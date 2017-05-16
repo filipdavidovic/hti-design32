@@ -1,4 +1,14 @@
 body {
 	color: grey;
-	font: sans-serif;
+	font-size: 28px;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+p {
+	margin: 0px;
+}
+
+p.big {
+	font-size: 4em;
 }
