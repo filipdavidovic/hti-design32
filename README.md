@@ -4,3 +4,5 @@ Group members:
 - Boy Janissen
 - Maurits van Riezen
 - Filip Davidovic
+
+The Documentation section of this file is to be updated. 
