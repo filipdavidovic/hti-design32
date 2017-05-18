@@ -1,4 +1,4 @@
-@import "text.css";
+@import url("text.css");
 
 body {
 	color: grey;
@@ -7,10 +7,6 @@ body {
 	text-align: center;
 }
 
-p {
-	margin: 0px;
-}
-
-p.big {
-	font-size: 4em;
+.ulist {
+	text-align: left;
 }
