@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:docname="temp.svg"
+   viewBox="0 0 300 300"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   width="300"
+   height="300">
+  <defs
+     id="defs4174" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="grey"
+     inkscape:pageshadow="2"
+     inkscape:window-y="-9"
+     inkscape:window-height="1001"
+     inkscape:window-maximized="1"
+     inkscape:zoom="1.3398429"
+     inkscape:window-x="-9"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="222.61994"
+     inkscape:cy="164.27559"
+     inkscape:window-width="1920"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(-211.81,-441.57)">
+    <g
+       id="g3888"
+       inkscape:export-ydpi="6.1553936"
+       inkscape:export-xdpi="6.1553936"
+       inkscape:export-filename="/run/user/1000/gvfs/sftp:host=192.168.1.33,port=33,user=pi/home/pi/OpenCyclingComputer/images/path3957.png"
+       transform="matrix(0.3939496,0,0,0.3939496,212.0953,450.59557)">
+      <path
+         id="path3844"
+         d="m 420.08,583.89 c 19.087,14.509 31.41,37.455 31.41,63.28 0,43.872 -35.565,79.438 -79.438,79.438 -43.872,0 -79.438,-35.565 -79.438,-79.438 0,-25.788 12.288,-48.706 31.328,-63.218"
+         style="color:grey;fill:none;stroke:grey;stroke-width:24;stroke-linecap:round;stroke-linejoin:round"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3886"
+         d="m 324.04,584.85 0,-532.536095 c 0,-26.594 21.41,-48.0040001 48.004,-48.0040001 26.594,0 48.004,21.4100001 48.004,48.0040001 l 0,526.707885"
+         style="color:grey;fill:none;stroke:grey;stroke-width:23.99200058;stroke-linejoin:round"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="csssc" />
+    </g>
+    <g
+       id="g3946"
+       inkscape:export-ydpi="6.1553936"
+       inkscape:export-xdpi="6.1553936"
+       inkscape:export-filename="/run/user/1000/gvfs/sftp:host=192.168.1.33,port=33,user=pi/home/pi/OpenCyclingComputer/images/path3957.png"
+       transform="matrix(0.3939496,0,0,0.3939496,212.0953,450.59557)">
+      <circle
+         id="path3892"
+         style="color:#000000;fill:grey;stroke:grey;stroke-width:24;stroke-linecap:round;stroke-linejoin:round"
+         transform="translate(5.3439,-2.732)"
+         cx="367.18781"
+         cy="651.50281"
+         r="34.975372" />
+      <rect
+         id="rect3894"
+         style="color:#000000;fill:grey;stroke:grey;stroke-width:24;stroke-linecap:round;stroke-linejoin:round"
+         ry="9.7271004"
+         height="213.73"
+         width="19.454"
+         y="428.01999"
+         x="362.32001" />
+    </g>
+    <g
+       id="g3950"
+       inkscape:export-ydpi="6.1553936"
+       inkscape:export-xdpi="6.1553936"
+       inkscape:export-filename="/run/user/1000/gvfs/sftp:host=192.168.1.33,port=33,user=pi/home/pi/OpenCyclingComputer/images/path3957.png"
+       transform="translate(-68.803,2.9619)" />
+  </g>
+</svg>

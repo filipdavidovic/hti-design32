@@ -14,10 +14,18 @@ body {
 
 .leftbar, .rightbar {
 	position: fixed;
-	height: 100vh;
+	height: calc(100vh - 20px);
+	top: 20px;
 	width: 200px;
 	display: flex;
 	flex-direction: column;
+}
+
+.leftbar img, .rightbar img {
+	height: calc(100% - 30px);
+	max-height: 200px;
+	max-width: 200px;
+	flex-shrink: 1
 }
 
 .topbar {
@@ -42,8 +50,11 @@ body {
 
 .leftbar a, .rightbar a {
 	display: block;
-	flex-grow: 2;
 	text-decoration: none;
+	flex-grow: 1;
+	min-height: 5px;
+	flex-basis: 5px;
+	flex-shrink: 1;
 }
 
 .innerContent {
