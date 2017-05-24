@@ -36,4 +36,5 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="540.0" x2="540.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="560.0" x2="560.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="580.0" x2="580.0" y1="37.5" y2="25.0" />
+<text x="600.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="end" fill="grey">300 BPM</text><line stroke="grey" stroke-width="2" fill="None"  x1="600.0" x2="600.0" y1="37.5" y2="25.0" />
 </svg>
