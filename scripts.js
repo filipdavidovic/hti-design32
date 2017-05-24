@@ -26,9 +26,13 @@ function callPage(pageRefInput) {
 
 		  var value = Number(containers[i].getAttribute("value"));
 		  var max = Number(containers[i].getAttribute("max"));
+		  var scale = Number(containers[i].getAttribute("scale"));
+		  if (scale <= 0 || scale==NaN){
+			  scale=1;
+		  }
 		  console.log(containers[i]+" "+value+" "+max+" "+containers[i].childNodes[1]);
 		  //value * scaleContainer height * image width / (image height * scaled image width)
-		  containers[i].childNodes[1].style.left="calc(50% - "+(value * 150 * 600) / (75 * max) +"px)";
+		  containers[i].childNodes[1].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
 		  //(u * px * 1) / (1 * u) = px
 	  }
 	  $('.scaleContainer').prepend("<img src=\"arrow_down.svg\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
