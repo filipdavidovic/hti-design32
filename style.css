@@ -8,6 +8,10 @@ body {
 	padding: 0px 50px 50px 50px;
 }
 
+a {
+	color: #558855;
+}
+
 .ulist {
 	text-align: left;
 }
@@ -57,10 +61,25 @@ body {
 	flex-shrink: 1;
 }
 
-.innerContent {
+.innerContent, .notifications {
 	margin-left: 200px;
 	margin-right: 200px;
 	padding: 25px;
+}
+
+.notification {
+	display: block;
+	width: 100%;
+	color: white;
+	background-color: #558855;
+	border-left: 16px solid #2a442a;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	background-image: url("warning.svg");
+	background-size: auto 90%;
+	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .scaleContainer {
