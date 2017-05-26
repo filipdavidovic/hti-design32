@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="685" id="svg2" version="1.1">
+<text x="0" y="37.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">07:00</text>
+<text x="0" y="75.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">08:00</text>
+<text x="0" y="112.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">09:00</text>
+<text x="0" y="150.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">10:00</text>
+<text x="0" y="187.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">11:00</text>
+<text x="0" y="225.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">00:00</text>
+<text x="0" y="262.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">01:00</text>
+<text x="0" y="300.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">02:00</text>
+<text x="0" y="337.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">03:00</text>
+<text x="0" y="375.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">04:00</text>
+<text x="0" y="412.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">05:00</text>
+<text x="0" y="450.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">06:00</text>
+<text x="0" y="487.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">07:00</text>
+<text x="0" y="525.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">08:00</text>
+<text x="0" y="562.5" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">09:00</text>
+<text x="137.14285714285714" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Sunday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="80.00" y="150.00" width="114.29" height="342.42" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="80.00" y="325.46" width="114.29" height="58.95" rx="0.00" ry="0.00"></rect>
+<text x="251.42857142857142" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Monday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="194.29" y="157.29" width="114.29" height="309.17" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="194.29" y="194.07" width="114.29" height="212.30" rx="0.00" ry="0.00"></rect>
+<text x="365.7142857142857" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Tuesday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="308.57" y="95.75" width="114.29" height="327.22" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="308.57" y="152.76" width="114.29" height="181.51" rx="0.00" ry="0.00"></rect>
+<text x="480.0" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Wendsday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="422.86" y="81.47" width="114.29" height="351.60" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="422.86" y="159.59" width="114.29" height="206.28" rx="0.00" ry="0.00"></rect>
+<text x="594.2857142857143" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Thursday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="537.14" y="115.63" width="114.29" height="379.23" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="537.14" y="189.50" width="114.29" height="141.23" rx="0.00" ry="0.00"></rect>
+<text x="708.5714285714286" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Friday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="651.43" y="197.65" width="114.29" height="186.30" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="651.43" y="203.83" width="114.29" height="51.04" rx="0.00" ry="0.00"></rect>
+<text x="822.8571428571429" y="624" font-family="sans-serif" font-size="18.0" text-anchor="middle" fill="grey">Saturday</text>
+<rect stroke="0" stroke-width="0" fill="#648064"  x="765.71" y="203.10" width="114.29" height="176.83" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="765.71" y="208.14" width="114.29" height="86.74" rx="0.00" ry="0.00"></rect>
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="194.28571428571428" x2="194.28571428571428" y1="0" y2="600" />
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="308.57142857142856" x2="308.57142857142856" y1="0" y2="600" />
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="422.85714285714283" x2="422.85714285714283" y1="0" y2="600" />
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="537.1428571428571" x2="537.1428571428571" y1="0" y2="600" />
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="651.4285714285714" x2="651.4285714285714" y1="0" y2="600" />
+<line stroke="#eeeeee" stroke-width="2" fill="None"  x1="765.7142857142857" x2="765.7142857142857" y1="0" y2="600" />
+<rect stroke="0" stroke-width="0" fill="#648064"  x="0.00" y="660.00" width="25.00" height="25.00" rx="0.00" ry="0.00"></rect>
+<text x="30.0" y="678.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">sleep</text>
+<rect stroke="0" stroke-width="0" fill="#326432"  x="440.00" y="660.00" width="25.00" height="25.00" rx="0.00" ry="0.00"></rect>
+<text x="470.0" y="678.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">deep sleep</text>
+</svg>

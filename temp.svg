@@ -3,10 +3,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="75" id="svg2" version="1.1">
 <line stroke="grey" stroke-width="3" fill="None"  x1="0" x2="1200" y1="37.5" y2="37.5" />
 <line stroke="grey" stroke-width="2" fill="None"  x1="804.0" x2="804.0" y1="37.5" y2="50.0" />
-<text x="804.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">you are dead</text><line stroke="grey" stroke-width="2" fill="None"  x1="686.0" x2="686.0" y1="37.5" y2="50.0" />
-<text x="686.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">hypothermia</text><line stroke="grey" stroke-width="2" fill="None"  x1="720.0" x2="720.0" y1="37.5" y2="50.0" />
-<text x="720.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">average</text><line stroke="grey" stroke-width="2" fill="None"  x1="756.0" x2="756.0" y1="37.5" y2="50.0" />
-<text x="756.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">fever</text><text x="0.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="start" fill="grey">0°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="0.0" x2="0.0" y1="37.5" y2="25.0" />
+<text x="804.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">you are dead</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="686.0" x2="686.0" y1="37.5" y2="50.0" />
+<text x="686.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">hypothermia</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="720.0" x2="720.0" y1="37.5" y2="50.0" />
+<text x="720.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">average</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="756.0" x2="756.0" y1="37.5" y2="50.0" />
+<text x="756.0" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">fever</text>
+<text x="0.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="start" fill="grey">0°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="0.0" x2="0.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="20.0" x2="20.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="40.0" x2="40.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="60.0" x2="60.0" y1="37.5" y2="25.0" />
@@ -16,7 +21,8 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="140.0" x2="140.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="160.0" x2="160.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="180.0" x2="180.0" y1="37.5" y2="25.0" />
-<text x="200.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">10°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="200.0" x2="200.0" y1="37.5" y2="25.0" />
+<text x="200.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">10°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="200.0" x2="200.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="220.0" x2="220.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="240.0" x2="240.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="260.0" x2="260.0" y1="37.5" y2="25.0" />
@@ -26,7 +32,8 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="340.0" x2="340.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="360.0" x2="360.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="380.0" x2="380.0" y1="37.5" y2="25.0" />
-<text x="400.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">20°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="400.0" x2="400.0" y1="37.5" y2="25.0" />
+<text x="400.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">20°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="400.0" x2="400.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="420.0" x2="420.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="440.0" x2="440.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="460.0" x2="460.0" y1="37.5" y2="25.0" />
@@ -36,7 +43,8 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="540.0" x2="540.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="560.0" x2="560.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="580.0" x2="580.0" y1="37.5" y2="25.0" />
-<text x="600.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">30°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="600.0" x2="600.0" y1="37.5" y2="25.0" />
+<text x="600.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">30°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="600.0" x2="600.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="620.0" x2="620.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="640.0" x2="640.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="660.0" x2="660.0" y1="37.5" y2="25.0" />
@@ -46,7 +54,8 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="740.0" x2="740.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="760.0" x2="760.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="780.0" x2="780.0" y1="37.5" y2="25.0" />
-<text x="800.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">40°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="800.0" x2="800.0" y1="37.5" y2="25.0" />
+<text x="800.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">40°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="800.0" x2="800.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="820.0" x2="820.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="840.0" x2="840.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="860.0" x2="860.0" y1="37.5" y2="25.0" />
@@ -56,7 +65,8 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="940.0" x2="940.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="960.0" x2="960.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="980.0" x2="980.0" y1="37.5" y2="25.0" />
-<text x="1000.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">50°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="1000.0" x2="1000.0" y1="37.5" y2="25.0" />
+<text x="1000.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">50°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="1000.0" x2="1000.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1020.0" x2="1020.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1040.0" x2="1040.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1060.0" x2="1060.0" y1="37.5" y2="25.0" />
@@ -66,5 +76,6 @@
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1140.0" x2="1140.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1160.0" x2="1160.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="1180.0" x2="1180.0" y1="37.5" y2="25.0" />
-<text x="1200.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="end" fill="grey">60°C</text><line stroke="grey" stroke-width="2" fill="None"  x1="1200.0" x2="1200.0" y1="37.5" y2="25.0" />
+<text x="1200.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="end" fill="grey">60°C</text>
+<line stroke="grey" stroke-width="2" fill="None"  x1="1200.0" x2="1200.0" y1="37.5" y2="25.0" />
 </svg>
