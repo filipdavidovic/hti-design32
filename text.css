@@ -1,17 +1,34 @@
 /* TODO: choose font */
 
+@font-face {
+  font-family: 'opendyslexic';
+	src: url('http://dyslexicfonts.com/fonts/OpenDyslexic-Regular.otf');
+	font-style: normal;
+	font-weight: normal;
+}
+
 .basic-text {
-  font-family: /* ... */;
+  font-family: 'opendyslexic';
 }
 
 p.alert-text {
   color: red;
 }
 
+small-title {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+}
+
 p {
+  /*font-family: 'opendyslexic';*/
 	margin: 0px;
 }
 
 p.big {
 	font-size: 4em;
+}
+
+.dyslexicFont {
+  font-family: 'opendyslexic';
 }

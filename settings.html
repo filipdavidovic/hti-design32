@@ -1,4 +1,44 @@
 <div class="content">
-  <p>Settings</p>
   <p class="big">You can manage your settings here</p>
+
+  <h2 class="small-title">Units</h2>
+  <p>
+    Distance
+    <select id="distanceSettings">
+      <option value="km">Kilometers</option>
+      <option value="mi">Miles</option>
+    </select>
+  </p>
+  <p>
+    Blood Pressure
+    <select id="bloodPressureSettings">
+      <option value="eu">KiloPascals [kPa]</option>
+      <option value="us">Millimeter of Mercury [mmHg]</option>
+    </select>
+  </p>
+  <p>
+    Temperature
+    <select id="temperatureSettings">
+      <option value="c">Celsius</option>
+      <option value="f">Farenheight</option>
+    </select>
+  </p>
+
+  <h2 class="small-title dyslexicFont">Dyslexic Mode</h2>
+  <p class="dyslexicFont">
+    Toggle Dyslexic mode:
+    <button type="button" id="toggleDyslexic">Toggle</button>
+  </p>
+
+  <h2 class="small-title">High Contrast Mode</h2>
+  <p>
+    Toggle High Contrast mode:
+    <button type="button" id="toggleHighContrast">Toggle</button>
+  </p>
+
+  <h2 class="small-title">Keyboard Shortcuts</h2>
+  <p>
+    Keyboard Shortcuts:
+    <input id="shortcutsCheckbox" type="checkbox">
+  </p>
 </div>
