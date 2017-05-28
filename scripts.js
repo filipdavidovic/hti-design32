@@ -178,7 +178,7 @@ function callPage(pageRefInput) {
         });
       });
 
-      $("#toggleDyslexic").click(function()) {
+      $("#toggleDyslexic").click(function() {
         if(Cookies.get("dyslexic") === "false") {
           Cookies.set("dyslexic", true);
           $( "<style id=\"dyslexicStyle\">p, a, h2 { font-family: 'opendyslexic'; }</style>" ).appendTo( "head" );
