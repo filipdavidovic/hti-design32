@@ -227,6 +227,12 @@ function callPage(pageRefInput) {
         $("#bodyTempValue").text( round(tempConversion.CtoF( $("#bodyTempValue").text()), 1) );
         $("#bodyTempUnit").html("&#8457;");
       }
+    } else if(pageRefInput === "landing.html") {
+      $(".ajaxLink").on('click', function(e){
+        e.preventDefault();
+        var pageRef = $(this).attr('href');
+        callPage(pageRef);
+      });
     }
 
     },
