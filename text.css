@@ -7,10 +7,6 @@
 	font-weight: normal;
 }
 
-.basic-text {
-  font-family: 'opendyslexic';
-}
-
 p.alert-text {
   color: red;
 }
@@ -29,6 +25,14 @@ p.big {
 	font-size: 2.5em;
 }
 
+.green {
+  color: #558855;
+}
+
 .dyslexicFont {
   font-family: 'opendyslexic';
+}
+
+a.tile-link {
+  text-decoration: none;
 }

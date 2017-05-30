@@ -1,14 +1,27 @@
 <div class="content">
   <p>Heart Rate:</p>
-  <p class="big">42.5 BMP</p>
+  <p class="big"><span id="hrOutput">42.5</span> BPM</p>
+  <p>
+    I want heart rate to be visible on the dashboard:
+    <input id="hRateCheckbox" type="checkbox">
+  </p>
   <div class="scaleContainer" value="42.5" max="300" scale=1>
-  <img src="hrate.svg"></img>
+    <img src="hrate.svg"></img>
   </div>
+
   <p>Blood pressure:</p>
-  <p class="big"><span id="bpValue">102</span> <span id="bpUnit">mmHg</span></p>
+  <p class="big"><span id="bpOutput">102</span> <span id="bpUnit">mmHg</span></p>
+  <p>
+    I want blood pressure to be visible on the dashboard:
+    <input id="bPressureCheckbox" type="checkbox">
+  </p>
   <div class="scaleContainer" value="102" max="300" scale=1>
-  <img src="bpres.svg"></img>
+    <img src="bpres.svg"></img>
   </div>
+  <p>
+    I want my heart rate and blood pressure to be meassured every: <span id="hrBpIntervalOutput"></span> minutes. <span class="green">You can change this value by dragging the slider below.</span>
+  </p>
+  <div class="slider-cus" id="hrBpSlider"></div>
   <p>History: </p>
   <img src="graphs/heart.svg" width="100%"></img>
 </div>
