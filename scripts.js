@@ -31,25 +31,19 @@ $(document).ready(function() {
     localStorage.setItem("bp", getRandom(120, 180));
     localStorage.setItem("hrBpInterval", 30);
 
-    localStorage.setItem("lastInterval", setInterval(function() {
-      localStorage.setItem("hr", getRandom(50, 190));
-      localStorage.setItem("bp", getRandom(120, 180));
-    }, localStorage.getItem("hrBpInterval") * 60 * 1000));
+
 
     localStorage.setItem("aTemp", getRandom(-10, 40));
     localStorage.setItem("bTemp", getRandom(32, 40));
     localStorage.setItem("tempInterval", 30);
 
-    localStorage.setItem("lastTempInterval", setInterval(function() {
-      localStorage.setItem("aTemp", getRandom(-10, 40));
-      localStorage.setItem("bTemp", getRandom(32, 40));
-    }, localStorage.getItem("tempInterval") * 60 * 1000));
+
   } else {
-    if(localStorage.getItem("hrBpInterval") === null) {
+    if(localStorage.getItem("hrBpInterval") === null || localStorage.getItem("hrBpInterval") < 15) {
       localStorage.setItem("hrBpInterval", 30);
     }
 
-    if(localStorage.getItem("tempInterval") === null) {
+    if(localStorage.getItem("tempInterval") === null || localStorage.getItem("tempInterval") < 15) {
       localStorage.setItem("tempInterval", 30);
     }
   }
@@ -87,24 +81,14 @@ $(document).ready(function() {
   });
 
   if(Cookies.get("highContrast") === "true") {
-    $( "<style id=\"highContrastStyle\">body { background-color: black; } .green { color: #885555; } a { color: #885555; } .topbar { color: black; } .notification { border-left-color: #442a2a; background-color: #885555; color: black; }</style>" ).appendTo( "head" );
+    $( "<style id=\"highContrastStyle\">body { background-color:white; color: black} .green { color: #202020; } a { color: #204020; }</style>" ).appendTo( "head" );
   }
 
   if(Cookies.get("dyslexic") === "true") {
     $( "<style id=\"dyslexicStyle\">p, a, h2 { font-family: 'opendyslexic'; }</style>" ).appendTo( "head" );
   }
 
-  updateHrBp();
-  clearInterval(localStorage.getItem("lastInterval"));
-  localStorage.setItem("lastInterval", setInterval(function() {
-    updateHrBp();
-  }, localStorage.getItem("hrBpInterval") * 60 * 1000));
 
-  updateTemp();
-  clearInterval(localStorage.getItem("lastTempInterval"));
-  localStorage.setItem("lastTempInterval", setInterval(function() {
-    updateTemp();
-  }, localStorage.getItem("tempInterval") * 60 * 1000));
 });
 
 function getRandom(min, max) {
@@ -172,25 +156,6 @@ function callPage(pageRefInput) {
     // }
     success: function(response) {
       $('.innerContent').html(response);
-
-	  var containers=$('.scaleContainer');
-	  for (var i=0; i<containers.length; i++) {
-
-		  var value = Number(containers[i].getAttribute("value"));
-		  var max = Number(containers[i].getAttribute("max"));
-		  var scale = Number(containers[i].getAttribute("scale"));
-		  if (scale <= 0 || scale==NaN){
-			  scale=1;
-		  }
-		  console.log(containers[i]+" "+value+" "+max+" "+containers[i].childNodes[1]);
-		  //value * scaleContainer height * image width / (image height * scaled image width)
-		  containers[i].childNodes[1].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
-		  //(u * px * 1) / (1 * u) = px
-	  }
-	  $('.scaleContainer').prepend("<img src=\"arrow_down.svg\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
-	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; left: 0px\"></img>");
-	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; right: 0px; transform: scaleX(-1);\"></img>");
-
     if(pageRefInput === "settings.html") {
       var temp = Cookies.getJSON("units");
 
@@ -238,7 +203,7 @@ function callPage(pageRefInput) {
       $("#toggleHighContrast").click(function() {
         if(Cookies.get("highContrast") === "false") {
           Cookies.set("highContrast", true);
-          $( "<style id=\"highContrastStyle\">body { background-color: black; } .green { color: #885555; } a { color: #885555; } .topbar { color: black; } .notification { border-left-color: #442a2a; background-color: #885555; color: black; }</style>" ).appendTo( "head" );
+          $( "<style id=\"highContrastStyle\">body {color: black} .green { color: #885555; } a { color: #204020; }</style>" ).appendTo( "head" );
         } else {
           Cookies.set("highContrast", false);
           $("#highContrastStyle").remove();
@@ -273,7 +238,7 @@ function callPage(pageRefInput) {
       }
 
       $( "#hrBpSlider" ).slider({
-        min: 0.1,
+        min: 20,
         max: 100,
         orientation: "horizontal",
         step: 1,
@@ -282,9 +247,7 @@ function callPage(pageRefInput) {
                   localStorage.setItem("hrBpInterval", ui.value);
                   $("#hrBpIntervalOutput").text(ui.value);
                   clearInterval(localStorage.getItem("lastInterval"));
-                  localStorage.setItem("lastInterval", setInterval(function() {
-                    updateHrBp();
-                  }, localStorage.getItem("hrBpInterval") * 60 * 1000));
+                  
                }
       });
 
@@ -360,7 +323,7 @@ function callPage(pageRefInput) {
       }
 
       $( "#tempSlider" ).slider({
-        min: 0.1,
+        min: 20,
         max: 100,
         orientation: "horizontal",
         step: 1,
@@ -368,10 +331,9 @@ function callPage(pageRefInput) {
         slide: function( event, ui ) {
                   localStorage.setItem("tempInterval", ui.value);
                   $("#tempIntervalOutput").text(ui.value);
+				  updateTemp();
                   clearInterval(localStorage.getItem("lastTempInterval"));
-                  localStorage.setItem("lastTempInterval", setInterval(function() {
-                    updateTemp();
-                  }, localStorage.getItem("tempInterval") * 60 * 1000));
+                  localStorage.setItem("lastTempInterval")
                }
       });
 
@@ -454,25 +416,28 @@ function callPage(pageRefInput) {
       }
 
       if(landingJSON.aTemp) {
-        $("#ambientTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CToF(localStorage.getItem("aTemp")), 1) + " F" : localStorage.getItem("aTemp") + " C"); //  TODO: add celsius and farenheight hex
+        $("#ambientTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CtoF(localStorage.getItem("aTemp")), 1) + " F" : localStorage.getItem("aTemp") + " C"); //  TODO: add celsius and farenheight hex
         $("#aTempCol").css("display", "inline");
       } else {
         $("#aTempCol").css("display", "none");
       }
       if(landingJSON.aTemp) {
-        $("#bodyTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) + " F" : localStorage.getItem("bTemp") + " C"); //  TODO: add celsius and farenheight hex
+        $("#bodyTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) + " F" : localStorage.getItem("bTemp") + " C"); //  TODO: add celsius and farenheight hex
         $("#bTempCol").css("display", "inline");
       } else {
         $("#bTempCol").css("display", "none");
       }
     }
+	else {
+		updateGraphs();
+	}
 
     },
     error: function( error ) {
       console.log("the page was NOT loaded: ", error);
     },
     complete: function(xhr, status) {
-      console.log("the request is complete.");
+      
     }
   });
 }
@@ -503,14 +468,21 @@ var doUpdateHrBp = function() {
   var tempCookie = Cookies.getJSON("units");
 
   $("#hrOutput").text(localStorage.getItem("hr"));
+  $("#hrGraph").attr("value", localStorage.getItem("hr"));
 
   if(tempCookie.bloodPressureUnit === "eu") {
     $("#bpOutput").text( round(bpConversion.usToEu(localStorage.getItem("bp")), 1) );
     $("#bpUnit").text("kPa");
+	$("#bpGraph > img").attr("src", "bpres_kpa.svg");
+	$("#bpGraph").attr("max", 90).attr("value", bpConversion.usToEu(localStorage.getItem("bp")));
   } else {
     $("#bpOutput").text(localStorage.getItem("bp"));
     $("#bpUnit").text("mmHg");
+	$("#bpGraph > img").attr("src", "bpres.svg");
+	$("bpGraph").attr("max", 300).attr("value", localStorage.getItem("bp"));
   }
+  
+  updateGraphs();
 }
 
 var updateTemp = function() {
@@ -524,19 +496,55 @@ var updateTemp = function() {
 var doUpdateTemp = function() {
   var tempCookie = Cookies.getJSON("units");
 
-  if(tempCookie.bloodPressureUnit === "f") {
-    $("#ambientTempValue").text( round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) );
-    $("#ambientTempUnit").text("F"); // TODO: add farenhight hex
+  if(tempCookie.temperatureUnit === "f") {
+    $("#ambientTempValue").text( round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) );
+    $("#ambientTempUnit").text("°F"); // TODO: add farenhight hex
   } else {
     $("#ambientTempValue").text(localStorage.getItem("aTemp"));
-    $("#ambientTempUnit").text("C"); // TODO: add celsius hex
+    $("#ambientTempUnit").text("°C"); // TODO: add celsius hex
   }
 
-  if(tempCookie.bloodPressureUnit === "f") {
-    $("#bodyTempValue").text( round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) );
-    $("#bodyTempUnit").text("F"); // TODO: add farenhight hex
+  if(tempCookie.temperatureUnit === "f") {
+    $("#bodyTempValue").text( round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) );
+    $("#bodyTempUnit").text("°F");
+	$("#bodyTempGraph > img").attr("src", "temp_f.svg");
+	$("#bodyTempGraph").attr("max", 130).attr("value", tempConversion.CtoF(localStorage.getItem("bTemp")));
   } else {
     $("#bodyTempValue").text(localStorage.getItem("bTemp"));
-    $("#bodyTempUnit").text("C"); // TODO: add celsius hex
+    $("#bodyTempUnit").text("°C"); // TODO: add celsius hex
+	$("#bodyTempGraph > img").attr("src", "temp.svg");
+	$("#bodyTempGraph").attr("max", 60).attr("value", localStorage.getItem("bTemp"));
   }
+  
+  updateGraphs();
+}
+
+function updateGraphs() {
+	var containers=$('.scaleContainer');
+	  for (var i=0; i<containers.length; i++) {
+
+		  var value = Number(containers[i].getAttribute("value"));
+		  var max = Number(containers[i].getAttribute("max"));
+		  var scale = Number(containers[i].getAttribute("scale"));
+		  if (scale <= 0 || scale==NaN){
+			  scale=1;
+		  }
+		  var toDelete=[];
+		  for (var j=0; j<containers[i].childNodes.length; j++){
+			  if (containers[i].childNodes[j].nodeType==1 && containers[i].childNodes[j].getAttribute("temp")=="True") {
+				  toDelete.push(containers[i].childNodes[j]);
+			  }
+		  }
+		  for (var j=0; j<toDelete.length; j++){
+			  containers[i].remove(toDelete[j]);
+		  }
+		  console.log(containers[i]+" "+value+" "+max+" "+containers[i].childNodes[1]);
+		  //value * scaleContainer height * image width / (image height * scaled image width)
+		  containers[i].childNodes[1].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
+		  //(u * px * 1) / (1 * u) = px
+	  }
+	  $('.scaleContainer').prepend("<img temp=\"True\" src=\"arrow_down.svg\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
+	  $('.scaleContainer').append("<img temp=\"True\" src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; left: 0px\"></img>");
+	  $('.scaleContainer').append("<img temp=\"True\" src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; right: 0px; transform: scaleX(-1);\"></img>");
+
 }

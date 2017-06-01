@@ -2,22 +2,23 @@
   <p>Ambient temperature:</p>
   <p class="big"><span id="ambientTempValue">23.6</span> <span id="ambientTempUnit">&#8451;</span></p>
   <p>
-    I want ambient temperature to be visible on the dashboard:
-    <input id="aTempCheckbox" type="checkbox">
+    <input id="aTempCheckbox" type="checkbox"></input>Show in dashboard
   </p>
+  
+  <div class="vspace"/>
 
   <p>Body temperature:</p>
   <p class="big"><span id="bodyTempValue">36.4</span> <span id="bodyTempUnit">&#8451;</span></p>
+  <div class="scaleContainer" id="bodyTempGraph" value="36.4" max="60" scale="2">
+	<img src="temp.svg"></img>
+  </div>
   <p>
-    I want body temperature to be visible on the dashboard:
-    <input id="bTempCheckbox" type="checkbox">
+    <input id="bTempCheckbox" type="checkbox"></input>Show in dashboard
   </p>
 
   <p class="">
     I want my heart rate and blood pressure to be meassured every: <span id="tempIntervalOutput"></span> minutes. <span class="green">You can change this value by dragging the slider below.</span>
   </p>
   <div class="slider-cus" id="tempSlider"></div>
-  <div class="scaleContainer" value="36.4" max="60" scale="2">
-	<img src="temp.svg"></img>
-  </div>
+
 </div>

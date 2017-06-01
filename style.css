@@ -136,9 +136,18 @@ a {
 	background-color: grey;
 	display: table;
 	overflow: hidden;
+	color: white;
+	padding: 10px;
+	margin: 10px;
 }
 
 .dashboard-tile-text {
 	display: table-cell;
 	vertical-align: middle;
 }
+
+.vspace {
+	height: 4em;
+}
+
+
