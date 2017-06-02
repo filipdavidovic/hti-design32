@@ -5,6 +5,11 @@
     I want heart rate to be visible on the dashboard:
     <input id="hRateCheckbox" type="checkbox">
   </p>
+  <br />
+  <p>
+    I want the lower threshold for warnings about my heart rate to be <span id="hrLowerWarning"></span> BPM and upper threshold to be <span id="hrUpperWarning"></span> BPM. <span class="green">You can change this value by adjusting the slider below.</span>
+  </p>
+  <div class="slider-cus" id="hrThresholdSlider"></div>
   <div class="scaleContainer" value="42.5" max="300" scale=1>
     <img src="hrate.svg"></img>
   </div>
@@ -15,6 +20,11 @@
     I want blood pressure to be visible on the dashboard:
     <input id="bPressureCheckbox" type="checkbox">
   </p>
+  <br />
+  <p>
+    I want the lower threshold for warnings about my blood pressure to be <span id="bpLowerWarning"></span> <span class="bpThresholdUnit"></span> and upper threshold to be <span id="bpUpperWarning"></span> <span class="bpThresholdUnit"></span>. <span class="green">You can change this value by adjusting the slider below.</span>
+  </p>
+  <div class="slider-cus" id="bpThresholdSlider"></div>
   <div class="scaleContainer" value="102" max="300" scale=1>
     <img src="bpres.svg"></img>
   </div>

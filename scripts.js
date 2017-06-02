@@ -11,11 +11,10 @@ $(document).ready(function() {
     Cookies.set("visited", true, { expires: 7 });
     Cookies.set("units", {
       "temperatureUnit": "c", // Celsius
-      "bloodPressureUnit": "eu", // kPa
-      "distanceUnit": "km" // Kilometers
+      "bloodPressureUnit": "us" // kPa
     }, { expires: 7 });
-    Cookies.set("dyslexic", false, { expires: 7 });
-    Cookies.set("highContrast", false, { expires: 7 });
+    Cookies.set("dyslexic", false);
+    Cookies.set("highContrast", false);
     Cookies.set("shortcuts", false);
 
     Cookies.set("landingTiles", {
@@ -35,6 +34,13 @@ $(document).ready(function() {
       localStorage.setItem("hr", getRandom(50, 190));
       localStorage.setItem("bp", getRandom(120, 180));
     }, localStorage.getItem("hrBpInterval") * 60 * 1000));
+
+    localStorage.setItem("thresholds", JSON.stringify({
+      "hr": [40, 150],
+      "bp": [70, 140],
+      "aTemp": [0, 28],
+      "bTemp": [35, 38]
+    }));
 
     localStorage.setItem("aTemp", getRandom(-10, 40));
     localStorage.setItem("bTemp", getRandom(32, 40));
@@ -190,11 +196,11 @@ function callPage(pageRefInput) {
 	  $('.scaleContainer').prepend("<img src=\"arrow_down.svg\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
 	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; left: 0px\"></img>");
 	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; right: 0px; transform: scaleX(-1);\"></img>");
+    checkWarnings();
 
     if(pageRefInput === "settings.html") {
       var temp = Cookies.getJSON("units");
 
-      $("#distanceSettings").val(temp.distanceUnit);
       $("#temperatureSettings").val(temp.temperatureUnit);
       $("#bloodPressureSettings").val(temp.bloodPressureUnit);
 
@@ -202,17 +208,7 @@ function callPage(pageRefInput) {
         var tempJson = Cookies.getJSON("units");
         Cookies.set("units", {
           "temperatureUnit": $("#temperatureSettings option:selected").val(),
-          "bloodPressureUnit": tempJson.bloodPressureUnit,
-          "distanceUnit": tempJson.distanceUnit
-        });
-      });
-
-      $("#distanceSettings").change(function() {
-        var tempJson = Cookies.getJSON("units");
-        Cookies.set("units", {
-          "temperatureUnit": tempJson.temperatureUnit,
-          "bloodPressureUnit": tempJson.bloodPressureUnit,
-          "distanceUnit": $("#distanceSettings option:selected").val()
+          "bloodPressureUnit": tempJson.bloodPressureUnit
         });
       });
 
@@ -220,8 +216,7 @@ function callPage(pageRefInput) {
         var tempJson = Cookies.getJSON("units");
         Cookies.set("units", {
           "temperatureUnit": tempJson.temperatureUnit,
-          "bloodPressureUnit": $("#bloodPressureSettings option:selected").val(),
-          "distanceUnit": tempJson.distanceUnit
+          "bloodPressureUnit": $("#bloodPressureSettings option:selected").val()
         });
       });
 
@@ -259,8 +254,11 @@ function callPage(pageRefInput) {
       });
     } else if(pageRefInput === "heart-rate.html") {
       doUpdateHrBp();
+      var tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
 
       $("#hrBpIntervalOutput").text(localStorage.getItem("hrBpInterval"));
+      $("#hrLowerWarning").text(tempThresholds.hr[0]);
+      $("#hrUpperWarning").text(tempThresholds.hr[1]);
 
       var tempCookie = Cookies.getJSON("units");
 
@@ -273,7 +271,7 @@ function callPage(pageRefInput) {
       }
 
       $( "#hrBpSlider" ).slider({
-        min: 0.1,
+        min: 1,
         max: 100,
         orientation: "horizontal",
         step: 1,
@@ -287,6 +285,38 @@ function callPage(pageRefInput) {
                   }, localStorage.getItem("hrBpInterval") * 60 * 1000));
                }
       });
+
+      $("#hrThresholdSlider").slider({
+        range: true,
+        min: 0,
+        max: 220,
+        values: [tempThresholds.hr[0], tempThresholds.hr[1]],
+        slide: function() {
+          $("#hrLowerWarning").text($("#hrThresholdSlider").slider("values", 0));
+          $("#hrUpperWarning").text($("#hrThresholdSlider").slider("values", 1));
+          tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
+          localStorage.setItem("thresholds", JSON.stringify({
+            "hr": [$("#hrThresholdSlider").slider("values", 0), $("#hrThresholdSlider").slider("values", 1)],
+            "bp": [tempThresholds.bp[0], tempThresholds.bp[1]]
+          }));
+        }
+      });
+
+      $("#bpThresholdSlider").slider({
+        range: true,
+        min: 0,
+        max: 220,
+        values: [tempThresholds.bp[0], tempThresholds.bp[1]],
+        slide: function() {
+          tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
+          localStorage.setItem("thresholds", JSON.stringify({
+            "hr": [tempThresholds.hr[0], tempThresholds.hr[1]],
+            "bp": [$("#bpThresholdSlider").slider("values", 0), $("#bpThresholdSlider").slider("values", 1)]
+          }));
+          doUpdateHrBp();
+        }
+      });
+
 
       var landingJSON = Cookies.getJSON("landingTiles");
       if(landingJSON.hRate === true) {
@@ -347,6 +377,7 @@ function callPage(pageRefInput) {
       });
     } else if(pageRefInput === "temperature.html") {
       doUpdateTemp();
+      var tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
 
       $("#tempIntervalOutput").text(localStorage.getItem("tempInterval"));
 
@@ -360,7 +391,7 @@ function callPage(pageRefInput) {
       }
 
       $( "#tempSlider" ).slider({
-        min: 0.1,
+        min: 1,
         max: 100,
         orientation: "horizontal",
         step: 1,
@@ -373,6 +404,40 @@ function callPage(pageRefInput) {
                     updateTemp();
                   }, localStorage.getItem("tempInterval") * 60 * 1000));
                }
+      });
+
+      $("#aTempThresholdSlider").slider({
+        range: true,
+        min: -30,
+        max: 50,
+        values: [tempThresholds.aTemp[0], tempThresholds.aTemp[1]],
+        slide: function() {
+          tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
+          localStorage.setItem("thresholds", JSON.stringify({
+            "hr": [tempThresholds.hr[0], tempThresholds.hr[1]],
+            "bp": [tempThresholds.bp[0], tempThresholds.bp[1]],
+            "aTemp": [$("#aTempThresholdSlider").slider("values", 0), $("#aTempThresholdSlider").slider("values", 1)],
+            "bTemp": [tempThresholds.bTemp[0], tempThresholds.bTemp[1]]
+          }));
+          doUpdateTemp();
+        }
+      });
+
+      $("#bTempThresholdSlider").slider({
+        range: true,
+        min: 32,
+        max: 45,
+        values: [tempThresholds.bTemp[0], tempThresholds.bTemp[1]],
+        slide: function() {
+          tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
+          localStorage.setItem("thresholds", JSON.stringify({
+            "hr": [tempThresholds.hr[0], tempThresholds.hr[1]],
+            "bp": [tempThresholds.bp[0], tempThresholds.bp[1]],
+            "aTemp": [tempThresholds.aTemp[0], tempThresholds.aTemp[1]],
+            "bTemp": [$("#bTempThresholdSlider").slider("values", 0), $("#bTempThresholdSlider").slider("values", 1)]
+          }));
+          doUpdateTemp();
+        }
       });
 
       var landingJSON = Cookies.getJSON("landingTiles");
@@ -454,13 +519,15 @@ function callPage(pageRefInput) {
       }
 
       if(landingJSON.aTemp) {
-        $("#ambientTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CToF(localStorage.getItem("aTemp")), 1) + " F" : localStorage.getItem("aTemp") + " C"); //  TODO: add celsius and farenheight hex
+        $("#ambientTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CtoF(localStorage.getItem("aTemp")), 1) : localStorage.getItem("aTemp"));
+        $("#aTempUnit").html(tempJSON.temperatureUnit === "f" ? " &#8457" : " &#8451");
         $("#aTempCol").css("display", "inline");
       } else {
         $("#aTempCol").css("display", "none");
       }
-      if(landingJSON.aTemp) {
-        $("#bodyTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) + " F" : localStorage.getItem("bTemp") + " C"); //  TODO: add celsius and farenheight hex
+      if(landingJSON.bTemp) {
+        $("#bodyTempTile .value").text(tempJSON.temperatureUnit === "f" ? round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) : localStorage.getItem("bTemp"));
+        $("#bTempUnit").html(tempJSON.temperatureUnit === "f" ? " &#8457" : " &#8451");
         $("#bTempCol").css("display", "inline");
       } else {
         $("#bTempCol").css("display", "none");
@@ -501,15 +568,24 @@ var updateHrBp = function() {
 
 var doUpdateHrBp = function() {
   var tempCookie = Cookies.getJSON("units");
+  var tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
 
   $("#hrOutput").text(localStorage.getItem("hr"));
 
   if(tempCookie.bloodPressureUnit === "eu") {
     $("#bpOutput").text( round(bpConversion.usToEu(localStorage.getItem("bp")), 1) );
     $("#bpUnit").text("kPa");
+
+    $("#bpLowerWarning").text(round(bpConversion.usToEu(tempThresholds.bp[0]), 1));
+    $("#bpUpperWarning").text(round(bpConversion.usToEu(tempThresholds.bp[1]), 1));
+    $(".bpThresholdUnit").text("kPa");
   } else {
     $("#bpOutput").text(localStorage.getItem("bp"));
     $("#bpUnit").text("mmHg");
+
+    $("#bpLowerWarning").text(tempThresholds.bp[0]);
+    $("#bpUpperWarning").text(tempThresholds.bp[1]);
+    $(".bpThresholdUnit").text("mmHg");
   }
 }
 
@@ -523,20 +599,81 @@ var updateTemp = function() {
 
 var doUpdateTemp = function() {
   var tempCookie = Cookies.getJSON("units");
+  tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
 
-  if(tempCookie.bloodPressureUnit === "f") {
-    $("#ambientTempValue").text( round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) );
-    $("#ambientTempUnit").text("F"); // TODO: add farenhight hex
+  if(tempCookie.temperatureUnit === "f") {
+    $("#ambientTempValue").text( round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) );
+    $("#ambientTempUnit").html("&#8457");
+    $("#bodyTempValue").text( round(tempConversion.CtoF(localStorage.getItem("bTemp")), 1) );
+    $("#bodyTempUnit").html("&#8457");
+
+    $("#aTempLowerWarning").text(round(tempConversion.CtoF(tempThresholds.aTemp[0]), 1));
+    $("#aTempUpperWarning").text(round(tempConversion.CtoF(tempThresholds.aTemp[1]), 1));
+    $("#bTempLowerWarning").text(round(tempConversion.CtoF(tempThresholds.bTemp[0]), 1));
+    $("#bTempUpperWarning").text(round(tempConversion.CtoF(tempThresholds.bTemp[1]), 1));
+    $(".tempThresholdUnit").text("F");
   } else {
     $("#ambientTempValue").text(localStorage.getItem("aTemp"));
-    $("#ambientTempUnit").text("C"); // TODO: add celsius hex
+    $("#ambientTempUnit").html("&#8451");
+    $("#bodyTempValue").text(localStorage.getItem("bTemp"));
+    $("#bodyTempUnit").html("&#8451");
+
+    $("#aTempLowerWarning").text(tempThresholds.aTemp[0]);
+    $("#aTempUpperWarning").text(tempThresholds.aTemp[1]);
+    $("#bTempLowerWarning").text(tempThresholds.bTemp[0]);
+    $("#bTempUpperWarning").text(tempThresholds.bTemp[1]);
+    $(".tempThresholdUnit").html("&#8451"); // TODO: add celsius hex
+  }
+}
+
+var checkWarnings = function() {
+  var tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
+  var hRate = localStorage.getItem("hr");
+  var bPressure = localStorage.getItem("bp");
+  var aTemp = localStorage.getItem("aTemp");
+  var bTemp = localStorage.getItem("bTemp");
+
+  if(tempThresholds.hr[0] > hRate) {
+    $("#lowHr").css("display", "block");
+  } else {
+    $("#lowHr").css("display", "none");
+  }
+  if(tempThresholds.hr[1] < hRate) {
+    $("#highHr").css("display", "block");
+  } else {
+    $("#highHr").css("display", "none");
   }
 
-  if(tempCookie.bloodPressureUnit === "f") {
-    $("#bodyTempValue").text( round(tempConversion.CToF(localStorage.getItem("bTemp")), 1) );
-    $("#bodyTempUnit").text("F"); // TODO: add farenhight hex
+  if(tempThresholds.bp[0] > bPressure) {
+    $("#lowBp").css("display", "block");
   } else {
-    $("#bodyTempValue").text(localStorage.getItem("bTemp"));
-    $("#bodyTempUnit").text("C"); // TODO: add celsius hex
+    $("#lowBp").css("display", "none");
+  }
+  if(tempThresholds.bp[1] < bPressure) {
+    $("#highBp").css("display", "block");
+  } else {
+    $("#highBp").css("display", "none");
+  }
+
+  if(tempThresholds.aTemp[0] > aTemp) {
+    $("#lowATemp").css("display", "block");
+  } else {
+    $("#lowATemp").css("display", "none");
+  }
+  if(tempThresholds.aTemp[1] < aTemp) {
+    $("#highATemp").css("display", "block");
+  } else {
+    $("#highATemp").css("display", "none");
+  }
+
+  if(tempThresholds.bTemp[0] > bTemp) {
+    $("#lowBTemp").css("display", "block");
+  } else {
+    $("#lowBTemp").css("display", "none");
+  }
+  if(tempThresholds.bTemp[1] < bTemp) {
+    $("#highBTemp").css("display", "block");
+  } else {
+    $("#highBTemp").css("display", "none");
   }
 }
