@@ -26,6 +26,13 @@ $(document).ready(function() {
       "sleep": true
     }, { expires: 7 });
 
+    localStorage.setItem("thresholds", JSON.stringify({
+      "hr": [40, 150],
+      "bp": [70, 140],
+      "aTemp": [0, 28],
+      "bTemp": [35, 38]
+    }));
+
     localStorage.setItem("hr", getRandom(50, 190));
     localStorage.setItem("bp", getRandom(120, 180));
     localStorage.setItem("hrBpInterval", 30);
@@ -35,12 +42,6 @@ $(document).ready(function() {
       localStorage.setItem("bp", getRandom(120, 180));
     }, localStorage.getItem("hrBpInterval") * 60 * 1000));
 
-    localStorage.setItem("thresholds", JSON.stringify({
-      "hr": [40, 150],
-      "bp": [70, 140],
-      "aTemp": [0, 28],
-      "bTemp": [35, 38]
-    }));
 
     localStorage.setItem("aTemp", getRandom(-10, 40));
     localStorage.setItem("bTemp", getRandom(32, 40));
@@ -297,7 +298,9 @@ function callPage(pageRefInput) {
           tempThresholds = JSON.parse(localStorage.getItem("thresholds"));
           localStorage.setItem("thresholds", JSON.stringify({
             "hr": [$("#hrThresholdSlider").slider("values", 0), $("#hrThresholdSlider").slider("values", 1)],
-            "bp": [tempThresholds.bp[0], tempThresholds.bp[1]]
+            "bp": [tempThresholds.bp[0], tempThresholds.bp[1]],
+            "aTemp": [tempThresholds.bTemp[0], tempThresholds.bTemp[1]],
+            "bTemp": [tempThresholds.bTemp[0], tempThresholds.bTemp[1]]
           }));
         }
       });
@@ -631,6 +634,7 @@ var checkWarnings = function() {
   var hRate = localStorage.getItem("hr");
   var bPressure = localStorage.getItem("bp");
   var aTemp = localStorage.getItem("aTemp");
+  console.log(tempThresholds);
   var bTemp = localStorage.getItem("bTemp");
 
   if(tempThresholds.hr[0] > hRate) {
