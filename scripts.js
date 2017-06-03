@@ -29,7 +29,7 @@ function round(value, precision) {
 $(document).ready(function() {
   document.getElementById("dyslexicSheet").disabled=true;
   document.getElementById("highContrastSheet").disabled=true;
-
+  $(".topbar").on("click", function () {callPage("landing.html")});
   buildLinks();
   setCookieDefaults();
   randomizeImportantValues();
@@ -96,6 +96,7 @@ function randomizeImportantValues() {
 }
 
 function callPage(pageRefInput) {
+  $('.innerContent').html("<p class=\"big\"> loading... </p>");
   $.ajax({
     url: pageRefInput,
     type: "GET",
@@ -116,6 +117,9 @@ function callPage(pageRefInput) {
 	  
     },
     error: function( error ) {
+		$(".innerContent").html("<p class=\"big\">Load failed</p>Check your internet connection<br><a href=\""
+			+pageRefInput+"\">retry</a>");
+		
       console.log("the page was NOT loaded: ", error);
     },
     complete: function(xhr, status) {
@@ -161,16 +165,18 @@ function updateGraphs() {
 					  toDelete.push(containers[i].childNodes[j]);
 				  }
 				  else {
-					if (unit !== undefined) {
+					if (isNaN(unit)) {
 					  
 					  //special cases: replacing scales when units are switched
-					    if (containers[i].childNodes[j].getAttribute("src")=="temp.svg" &&
+					    if ((containers[i].childNodes[j].getAttribute("src")=="temp.svg" ||
+   						     containers[i].childNodes[j].getAttribute("src")=="temp_f.svg")&&
 					      Cookies.get("tempUnit")==="°f") {
 							  containers[i].childNodes[j].setAttribute('src', 'temp_f.svg');
 							  max=130;
 							  value=Conversion.CtoF(value);
 						  }
-					    else if (containers[i].childNodes[j].getAttribute("src")=="bpres.svg" &&
+					    else if ((containers[i].childNodes[j].getAttribute("src")=="bpres.svg" ||
+                            containers[i].childNodes[j].getAttribute("src")=="bpres_kpa.svg") &&
 						  Cookies.get("bpUnit")==="kPa") {
 							  containers[i].childNodes[j].setAttribute('src', "bpres_kpa.svg");
 							  max=90;
@@ -254,7 +260,7 @@ function updateUnits() {
 
 function buildWarnings() {
 	$(".notifications a").remove();
-	arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"° C",
+	var arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"° C",
 			link:"temperature.html"},
 		{strict: "wbp", value: Cookies.get("bp"), min: 50, strictmin: 70, strictmax: 110, max: 150, name:"blood pressure", unit:"mmHg",
 		    link:"heart-rate.html"} ,
@@ -262,6 +268,22 @@ function buildWarnings() {
 		link: "stress.html"}
 		]
 	for (var i=0; i<arr.length; i++){
+		if (arr[i].unit=="° C" && Cookies.get("tempUnit")!=="° C") {
+			arr[i].value=round(Conversion.CtoF(arr[i].value),1);
+			arr[i].min=round(Conversion.CtoF(arr[i].min),1);
+			arr[i].strictmin=round(Conversion.CtoF(arr[i].strictmin),1);
+			arr[i].strictmax=round(Conversion.CtoF(arr[i].strictmax),1);
+			arr[i].max=round(Conversion.CtoF(arr[i].max),1);
+			arr[i].unit="° f"
+		}
+		else if (arr[i].unit=="mmHg" && Cookies.get("bpUnit")!="mmHg") {
+			arr[i].value=round(Conversion.HtoP(arr[i].value),1);
+			arr[i].min=round(Conversion.HtoP(arr[i].min),1);
+			arr[i].strictmin=round(Conversion.HtoP(arr[i].strictmin),1);
+			arr[i].strictmax=round(Conversion.HtoP(arr[i].strictmax),1);
+			arr[i].max=round(Conversion.HtoP(arr[i].max),1);
+			arr[i].unit="kPa"
+		}
 		if (Cookies.get(arr[i].strict)==="strict"){
 			if (arr[i].value>arr[i].strictmax){
 				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].strictmax+arr[i].unit+"</a>");
