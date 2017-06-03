@@ -1,5 +1,10 @@
 <!-- DOCTYPE HTML -->
-<!-- Okay guys, I've had a look at the dashboard and I have a few remarks:
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- Okay guys, I've had a look at the dashboard and I have a few remarks:
 - I would change the title 'Heart Rate' to something like 'Heart Condition', since we not only show Heart Rate but also Blood Pressure
 - I would change the color of the warning sign into red or yellow, since a warning sign is not normally green
 (I can see this interfering with some design principles)
@@ -9,18 +14,15 @@
 - We still have no way to set the interval of the history graphs (e.g see data of the past month instead of the past week only). Practically,
 this would mean that we have hard code a lot of different svg-images, which is a nuissance. However, it is a requirement for this assignment to be able to adjust these settings. 
 - At some places, the explanatory text is redundant, at other places it is missing. 
-- When you press a' toggle'-button in settings, it should change to 'untoggle'. If not, then we are violating the design principle
+- [Done]When you press a' toggle'-button in settings, it should change to 'untoggle'. If not, then we are violating the design principle
 of visibility of the system status.
-- The tiles on the homescreen do give a nice overview, but the green text on the grey background is poorly readable.
-- The user is not yet able to set thresholds for warnings (e.g. notify me when my heartrate exceeds XXX BPM)
-- The differences in color between the two lines in the heart history graph is barely noticable. Maybe we should decide to
+- [DONE] The tiles on the homescreen do give a nice overview, but the green text on the grey background is poorly readable.
+- [KINDA]The user is not yet able to set thresholds for warnings (e.g. notify me when my heartrate exceeds XXX BPM)
+- [DONE]The differences in color between the two lines in the heart history graph is barely noticable. Maybe we should decide to
 pick two colors that are more distinghuishable (although I get the point that both are meant to be green) 
 
 Of course, I will try to process a few of these comments myself, but I thought it might be a good overview to see what is left to be done. Let me know if you agree
 -->
-<html>
-<head>
-  <meta charset="UTF-8">
   <title>Design Assignment Group 32</title>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -30,6 +32,9 @@ Of course, I will try to process a few of these comments myself, but I thought i
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" id="dyslexicSheet" href="dyslexic.css" disabled>
   <link rel="stylesheet" id="highContrastSheet" href="high-contrast.css" disabled>
+  <link rel="shortcut icon" 
+      type="image/png" 
+      href="/icon.png">
 </head>
 <body>
   <div class="topbar">

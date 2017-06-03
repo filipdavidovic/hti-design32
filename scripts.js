@@ -82,7 +82,6 @@ function setCookieDefaults() {
 }
 
 function randomizeImportantValues() {
-	console.log("new values");
 	
 	Cookies.set('hr', getRandom(80, 120));
 	Cookies.set('bp', getRandom(60, 140));

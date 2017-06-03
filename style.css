@@ -51,7 +51,6 @@ body {
 }
 
 .leftbar a, .rightbar a {
-	transition: all 0.5s ease;
 	display: block;
 	text-decoration: none;
 	flex-grow: 1;
@@ -60,7 +59,12 @@ body {
 	flex-shrink: 1;
 }
 
-.leftbar a:hover, .rightbar a:hover {
+.leftbar a, .rightbar a, .tiles a {
+	transition: all 0.5s ease;
+	
+}
+
+.leftbar a:hover, .rightbar a:hover, .tiles a:hover {
 	transform: scale(0.9, 0.9);
 }
 
@@ -104,12 +108,13 @@ body {
 	flex-wrap: wrap;
 }
 
-.tiles div {
+.tiles div, .tiles a {
 	flex-grow: 1;
 	padding: 20px;
 	margin: 20px;
 	background-color: #558855;
 	color: white;
+	text-decoration: none;
 }
 
 ul.setting {
