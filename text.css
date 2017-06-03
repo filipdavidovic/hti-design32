@@ -1,7 +1,7 @@
 /* TODO: choose font */
 
-.basic-text {
-  font-family: /* ... */;
+a {
+	color: #558855;
 }
 
 p.alert-text {
@@ -12,6 +12,6 @@ p {
 	margin: 0px;
 }
 
-p.big {
+.big {
 	font-size: 4em;
 }

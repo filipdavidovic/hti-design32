@@ -33,8 +33,26 @@ $(document).ready(function() {
   buildLinks();
   setCookieDefaults();
   randomizeImportantValues();
-  setInterval(randomizeImportantValues, 10000);
-
+  setInterval(randomizeImportantValues, 30000);
+	
+ $(document).keypress(function(e) {
+    if(e.which == 49) {
+          callPage("heart-rate.html");
+    } else if(e.which == 50) {
+        callPage("temperature.html");
+    } else if(e.which == 51) {
+        callPage("location.html");
+    } else if(e.which == 52) {
+        callPage("stress.html");
+    } else if(e.which == 53) {
+        callPage("sleep.html");
+    } else if(e.which == 54) {
+        callPage("settings.html");
+    } else if(e.which == 48) {
+        callPage("landing.html");
+    }
+});
+	
   callPage('landing.html');
 });
 
@@ -64,12 +82,18 @@ function setCookieDefaults() {
 }
 
 function randomizeImportantValues() {
+	console.log("new values");
 	
 	Cookies.set('hr', getRandom(80, 120));
 	Cookies.set('bp', getRandom(60, 140));
 	Cookies.set('bt', getRandom(35, 39));
 	Cookies.set('at', getRandom(-10, 40));
 	Cookies.set('s', getRandom(0,100));
+	
+	updateUnits();
+	updateGraphs();
+	buildWarnings();
+	buildLinks(); //buildWarnings breaks links, so I have to rebuild them
 }
 
 function callPage(pageRefInput) {
@@ -137,7 +161,9 @@ function updateGraphs() {
 				  if (containers[i].childNodes[j].getAttribute("temp")=="True") {
 					  toDelete.push(containers[i].childNodes[j]);
 				  }
-				  else if (unit !== undefined) {
+				  else {
+					if (unit !== undefined) {
+					  
 					  //special cases: replacing scales when units are switched
 					    if (containers[i].childNodes[j].getAttribute("src")=="temp.svg" &&
 					      Cookies.get("tempUnit")==="°f") {
@@ -151,19 +177,19 @@ function updateGraphs() {
 							  max=90;
 							  value=Conversion.HtoP(value);
 						 }
+					}
+					
+					containers[i].childNodes[j].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
 				  }
 			  }
 		  }
 		  for (var j=0; j<toDelete.length; j++){
-			  containers[i].remove(toDelete[j]);
+			  containers[i].removeChild(toDelete[j]);
 		  }
-		  //value * scaleContainer height * image width / (image height * scaled image width)
-		  containers[i].childNodes[1].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
-		  //(u * px * 1) / (1 * u) = px
 	  }
-	  $('.scaleContainer').prepend("<img src=\"arrow_down.svg\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
-	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; left: 0px\"></img>");
-	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" style=\"position: absolute; height: 100%; right: 0px; transform: scaleX(-1);\"></img>");
+	  $('.scaleContainer').append("<img src=\"arrow_down.svg\" temp=\"True\" style=\"position: absolute; height: 25px; left: calc(50% - 25px);\"></img>");
+	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" temp=\"True\" style=\"position: absolute; height: 100%; left: 0px\"></img>");
+	  $('.scaleContainer').append("<img src=\"whiteGradient.svg\" temp=\"True\" style=\"position: absolute; height: 100%; right: 0px; transform: scaleX(-1);\"></img>");
 
 }
 
@@ -233,7 +259,7 @@ function buildWarnings() {
 			link:"temperature.html"},
 		{strict: "wbp", value: Cookies.get("bp"), min: 50, strictmin: 70, strictmax: 110, max: 150, name:"blood pressure", unit:"mmHg",
 		    link:"heart-rate.html"} ,
-		{strict: "ws", value: Cookies.get("ws"), min: 0, strictmin: 0, strictmax: 80, max: 90, name:"stress", unit:"%",
+		{strict: "ws", value: Cookies.get("s"), min: 0, strictmin: 0, strictmax: 80, max: 90, name:"stress", unit:"%",
 		link: "stress.html"}
 		]
 	for (var i=0; i<arr.length; i++){
@@ -245,7 +271,7 @@ function buildWarnings() {
 				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is below "+arr[i].strictmin+arr[i].unit+"</a>");
 			}
 		}
-		else if (Cookies.get("wtemp")==="on") {
+		else if (Cookies.get(arr[i].strict)==="on") {
 			if (arr[i].value>arr[i].max){
 				$(".notifications").append("<a href=\"t"+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].max+arr[i].unit+"</a>");
 			}

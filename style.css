@@ -8,9 +8,7 @@ body {
 	padding: 0px 50px 50px 50px;
 }
 
-a {
-	color: #558855;
-}
+
 
 .ulist {
 	text-align: left;
@@ -53,12 +51,17 @@ a {
 }
 
 .leftbar a, .rightbar a {
+	transition: all 0.5s ease;
 	display: block;
 	text-decoration: none;
 	flex-grow: 1;
 	min-height: 5px;
 	flex-basis: 5px;
 	flex-shrink: 1;
+}
+
+.leftbar a:hover, .rightbar a:hover {
+	transform: scale(0.9, 0.9);
 }
 
 .innerContent, .notifications {
@@ -95,11 +98,25 @@ a {
 	position: absolute;
 }
 
+.tiles {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.tiles div {
+	flex-grow: 1;
+	padding: 20px;
+	margin: 20px;
+	background-color: #558855;
+	color: white;
+}
+
 ul.setting {
 	display: flex;
 	flex-direction: row;
 	list-style-type: none;
-	flex-wrap: true;
+	flex-wrap: wrap;
 }
 
 ul.setting li {
