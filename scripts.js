@@ -218,13 +218,13 @@ function updateSettingLinks() {
 				if (settings[i].childNodes[j].getAttribute("value")==cookie || cookie===undefined && j==settings[i].childNodes.length-1){
 					settings[i].childNodes[j].classList.add("active");
 					$(settings[i].childNodes[j]).off("click");
-						
 				}
 				else {
 					settings[i].childNodes[j].classList.remove("active");
 					var name=settings[i].getAttribute("name");
 					var value=settings[i].childNodes[j].getAttribute("value");
 					var func=cookieFunction(name, value);
+					$(settings[i].childNodes[j]).off("click");
 					$(settings[i].childNodes[j]).on("click", func);
 				}
 			
