@@ -260,7 +260,7 @@ function updateUnits() {
 
 function buildWarnings() {
 	$(".notifications a").remove();
-	var arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"° C",
+	var arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"°c",
 			link:"temperature.html"},
 		{strict: "wbp", value: Cookies.get("bp"), min: 50, strictmin: 70, strictmax: 110, max: 150, name:"blood pressure", unit:"mmHg",
 		    link:"heart-rate.html"} ,
@@ -268,15 +268,15 @@ function buildWarnings() {
 		link: "stress.html"}
 		]
 	for (var i=0; i<arr.length; i++){
-		if (arr[i].unit=="° C" && Cookies.get("tempUnit")!=="° C") {
+		if (arr[i].unit=="°c" && Cookies.get("tempUnit")!=="°c") {
 			arr[i].value=round(Conversion.CtoF(arr[i].value),1);
 			arr[i].min=round(Conversion.CtoF(arr[i].min),1);
 			arr[i].strictmin=round(Conversion.CtoF(arr[i].strictmin),1);
 			arr[i].strictmax=round(Conversion.CtoF(arr[i].strictmax),1);
 			arr[i].max=round(Conversion.CtoF(arr[i].max),1);
-			arr[i].unit="° f"
+			arr[i].unit="°f"
 		}
-		else if (arr[i].unit=="mmHg" && Cookies.get("bpUnit")!="mmHg") {
+		else if (arr[i].unit=="mmHg" && Cookies.get("bpUnit")!=="mmHg") {
 			arr[i].value=round(Conversion.HtoP(arr[i].value),1);
 			arr[i].min=round(Conversion.HtoP(arr[i].min),1);
 			arr[i].strictmin=round(Conversion.HtoP(arr[i].strictmin),1);
