@@ -29,11 +29,9 @@ function round(value, precision) {
 $(document).ready(function() {
   setCookieDefaults();
   document.getElementById("dyslexicSheet").disabled=true;
-  $('a').on('click', function(e){
-    e.preventDefault();
-    var pageRef = $(this).attr('href');
-    callPage(pageRef);
-  });
+  document.getElementById("highContrastSheet").disabled=true;
+
+  buildLinks();
 
   callPage('landing.html');
 });
@@ -74,6 +72,9 @@ function callPage(pageRefInput) {
 		updateUnits();
 		updateGraphs();
 		updateSettingLinks();
+		buildWarnings();
+		buildLinks();
+		window.scrollTo(0, 0);
 	  
     },
     error: function( error ) {
@@ -155,6 +156,7 @@ function cookieFunction (name, value) {
 	return function () {
 		Cookies.set(name, value);
 		updateSettingLinks();
+		buildWarnings();
 	}
 }
 
@@ -208,4 +210,40 @@ function updateUnits() {
 		var item=Cookies.get(name);
 		$(units[i]).text(item);
 	}
+}
+
+function buildWarnings() {
+	$(".notifications a").remove();
+	arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"° C",
+			link:"temperature.html"},
+		{strict: "wbp", value: Cookies.get("bp"), min: 50, strictmin: 70, strictmax: 110, max: 150, name:"blood pressure", unit:"mmHg",
+		    link:"heart-rate.html"} 
+		]
+	for (var i=0; i<arr.length; i++){
+		if (Cookies.get(arr[i].strict)==="strict"){
+			if (arr[i].value>arr[i].strictmax){
+				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].strictmax+arr[i].unit+"</a>");
+			}
+			else if (arr[i].value<arr[i].strictmin){
+				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is below "+arr[i].strictmin+arr[i].unit+"</a>");
+			}
+		}
+		else if (Cookies.get("wtemp")==="on") {
+			if (arr[i].value>arr[i].max){
+				$(".notifications").append("<a href=\"t"+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].max+arr[i].unit+"</a>");
+			}
+			else if (arr[i].value<arr[i].min){
+				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is below "+arr[i].min+arr[i].unit+"</a>");
+			}
+		}
+	}
+}
+
+function buildLinks() {
+	$('a').off('click');
+	$('a').on('click', function(e){
+		e.preventDefault();
+		var pageRef = $(this).attr('href');
+		callPage(pageRef);
+	});
 }
