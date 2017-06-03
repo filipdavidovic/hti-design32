@@ -28,6 +28,7 @@ function round(value, precision) {
 
 $(document).ready(function() {
   setCookieDefaults();
+  document.getElementById("dyslexicSheet").disabled=true;
   $('a').on('click', function(e){
     e.preventDefault();
     var pageRef = $(this).attr('href');
@@ -49,6 +50,12 @@ function setCookieDefaults() {
 	}
 	if (Cookies.get('at')===undefined){
 		Cookies.set('at', getRandom(-10, 40));
+	}
+	if (Cookies.get('dyslexic')===undefined){
+		Cookies.set('dyslexic', 'no');
+	}
+	if (Cookies.get("contrast")===undefined){
+		Cookies.set("contrast", 'no');
 	}
 }
 
@@ -152,6 +159,9 @@ function cookieFunction (name, value) {
 }
 
 function updateSettingLinks() {
+	document.getElementById("dyslexicSheet").disabled=Cookies.get("dyslexic")==="no"
+	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")=="no"
+	
 	var settings=$('ul.setting');
 	for (var i=0; i<settings.length; i++) {
 		var cookie=Cookies.get(settings[i].getAttribute("name"));
