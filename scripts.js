@@ -2,18 +2,18 @@
 
 var Conversion = {
 	FtoC: function (degrees) {
-		return (degrees * (9/5) + 32);
-	},
-	CtoF: function (degrees){
 		return ((degrees - 32) * (5/9));
 	},
+	CtoF: function (degrees){
+		return (degrees * (9/5) + 32);
+	},
 	
-	PtoH: function (mmhg) {
+	PtoH: function (kpa) {
 		return (kpa / 0.133322387415);
 	},
 	
 	HtoP: function (mmhg) {
-		return (mmgh * 0.133322387415);
+		return (mmhg * 0.133322387415);
 	}
 }
 
@@ -43,6 +43,12 @@ function setCookieDefaults() {
 	}
 	if (Cookies.get('bp')===undefined){
 		Cookies.set('bp', getRandom(60, 140));
+	}
+	if (Cookies.get('bt')===undefined){
+		Cookies.set('bt', getRandom(35, 39));
+	}
+	if (Cookies.get('at')===undefined){
+		Cookies.set('at', getRandom(-10, 40));
 	}
 }
 
@@ -90,9 +96,10 @@ function callPage(pageRefInput) {
 function updateGraphs() {
 	var containers=$('.scaleContainer');
 	  for (var i=0; i<containers.length; i++) {
-
+		  var unit = undefined;
 		  var value = Number(containers[i].getAttribute("value"));
 		  if (isNaN(value)){
+			  unit = value;
 			  value = Cookies.get(containers[i].getAttribute("value"));
 		  }
 		  var max = Number(containers[i].getAttribute("max"));
@@ -103,8 +110,25 @@ function updateGraphs() {
 		  
 		  var toDelete=[];
 		  for (var j=0; j<containers[i].childNodes.length; j++){
-			  if (containers[i].childNodes[j].nodeType==1 && containers[i].childNodes[j].getAttribute("temp")=="True") {
-				  toDelete.push(containers[i].childNodes[j]);
+			  if (containers[i].childNodes[j].nodeType==1) {
+				  if (containers[i].childNodes[j].getAttribute("temp")=="True") {
+					  toDelete.push(containers[i].childNodes[j]);
+				  }
+				  else if (unit !== undefined) {
+					  //special cases: replacing scales when units are switched
+					    if (containers[i].childNodes[j].getAttribute("src")=="temp.svg" &&
+					      Cookies.get("tempUnit")==="°f") {
+							  containers[i].childNodes[j].setAttribute('src', 'temp_f.svg');
+							  max=130;
+							  value=Conversion.CtoF(value);
+						  }
+					    else if (containers[i].childNodes[j].getAttribute("src")=="bpres.svg" &&
+						  Cookies.get("bpUnit")==="kPa") {
+							  containers[i].childNodes[j].setAttribute('src', "bpres_kpa.svg");
+							  max=90;
+							  value=Conversion.HtoP(value);
+						 }
+				  }
 			  }
 		  }
 		  for (var j=0; j<toDelete.length; j++){
@@ -155,7 +179,23 @@ function updateUnits() {
 	var values=$('span.value');
 	for (var i=0; i<values.length; i++){
 		var name=values[i].getAttribute("key");
-		var item=round(Cookies.get(name),1);
-		$(values[i]).text(item);
+		var item=Cookies.get(name);
+		
+		//special case for unit conversions
+		if (name=="bp" && Cookies.get("bpUnit")==="kPa"){
+			item=Conversion.HtoP(item);
+		}
+		if ((name==="bt" || name==="at") && Cookies.get("tempUnit")=="°f"){
+			item=Conversion.CtoF(item);
+		}
+		
+		$(values[i]).text(round(item,1));
+	}
+	
+	var units=$('span.unit'); 
+	for (var i=0; i<units.length; i++){
+		var name=units[i].getAttribute("key");
+		var item=Cookies.get(name);
+		$(units[i]).text(item);
 	}
 }
