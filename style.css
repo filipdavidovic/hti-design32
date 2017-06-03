@@ -93,3 +93,31 @@ a {
 	height: 100%;
 	position: absolute;
 }
+
+ul.setting {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+}
+
+ul.setting li {
+	flex-grow: 1;
+	border-top: 2px solid #558855;
+	border-bottom: 2px solid #558855;
+	border-left: 1px solid #558855;
+	border-right: 1px solid #558855;
+	padding: 20px;
+}
+
+ul.setting li.active {
+	background-color: #558855;
+	color: white;
+}
+
+ul.setting li:first-child {
+	border-left: 2px solid #558855;
+}
+
+ul.setting li:last-child {
+	border-right: 2px solid #558855;
+}
