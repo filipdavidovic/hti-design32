@@ -27,34 +27,49 @@ function round(value, precision) {
 }
 
 $(document).ready(function() {
-  setCookieDefaults();
   document.getElementById("dyslexicSheet").disabled=true;
   document.getElementById("highContrastSheet").disabled=true;
 
   buildLinks();
+  setCookieDefaults();
+  randomizeImportantValues();
+  setInterval(randomizeImportantValues, 10000);
 
   callPage('landing.html');
 });
 
 function setCookieDefaults() {
-	if (Cookies.get('hr')===undefined){
-		Cookies.set('hr', getRandom(80, 120));
-	}
-	if (Cookies.get('bp')===undefined){
-		Cookies.set('bp', getRandom(60, 140));
-	}
-	if (Cookies.get('bt')===undefined){
-		Cookies.set('bt', getRandom(35, 39));
-	}
-	if (Cookies.get('at')===undefined){
-		Cookies.set('at', getRandom(-10, 40));
-	}
+	
 	if (Cookies.get('dyslexic')===undefined){
 		Cookies.set('dyslexic', 'no');
 	}
 	if (Cookies.get("contrast")===undefined){
 		Cookies.set("contrast", 'no');
 	}
+	if (Cookies.get("tempUnit")===undefined){
+		Cookies.set("tempUnit", "°c");
+	}
+	if (Cookies.get("bpUnit")===undefined){
+		Cookies.set("mmHg");
+	}
+	if (Cookies.get("wtemp")===undefined){
+		Cookies.set("wtemp", "on");
+	}
+	if (Cookies.get("wbp")===undefined){
+		Cookies.set("wbp", "on");
+	}
+	if (Cookies.get("ws")==undefined){
+		Cookies.set("ws", "on");
+	}
+}
+
+function randomizeImportantValues() {
+	
+	Cookies.set('hr', getRandom(80, 120));
+	Cookies.set('bp', getRandom(60, 140));
+	Cookies.set('bt', getRandom(35, 39));
+	Cookies.set('at', getRandom(-10, 40));
+	Cookies.set('s', getRandom(0,100));
 }
 
 function callPage(pageRefInput) {
@@ -217,7 +232,9 @@ function buildWarnings() {
 	arr=[{strict: "wtemp", value: Cookies.get("bt"), min: 34.7, strictmin: 36, strictmax: 37.3, max: 38, name:"body temperature", unit:"° C",
 			link:"temperature.html"},
 		{strict: "wbp", value: Cookies.get("bp"), min: 50, strictmin: 70, strictmax: 110, max: 150, name:"blood pressure", unit:"mmHg",
-		    link:"heart-rate.html"} 
+		    link:"heart-rate.html"} ,
+		{strict: "ws", value: Cookies.get("ws"), min: 0, strictmin: 0, strictmax: 80, max: 90, name:"stress", unit:"%",
+		link: "stress.html"}
 		]
 	for (var i=0; i<arr.length; i++){
 		if (Cookies.get(arr[i].strict)==="strict"){
