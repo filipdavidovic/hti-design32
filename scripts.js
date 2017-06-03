@@ -133,7 +133,7 @@ function callPage(pageRefInput) {
 
   function updateClock (clock) {
     var clockElement = $("#clock");
-    $(clockElement).text(new Date().toLocaleTimeString());
+    $(clockElement).text(new Date().toDateString()+" "+new Date().toLocaleTimeString());
   }
 
   setInterval(function () {
