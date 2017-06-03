@@ -29,9 +29,9 @@
 <text x="540" y="155.55555555555554" font-family="sans-serif" font-size="12" text-anchor="end" fill="grey">150mmHg</text>
 <text x="540" y="177.77777777777777" font-family="sans-serif" font-size="12" text-anchor="end" fill="grey">140mmHg</text>
 <text x="540" y="200.0" font-family="sans-serif" font-size="12" text-anchor="end" fill="grey">130mmHg</text>
-<path stroke="#326432" stroke-width="2" fill="None"  d="M70.00 117.89L127.14 113.67L184.29 135.21L241.43 104.13L298.57 110.90L355.71 76.38L412.86 108.77L470.00 96.12"/>
+<path stroke="#646419" stroke-width="2" fill="None"  d="M70.00 117.89L127.14 113.67L184.29 135.21L241.43 104.13L298.57 110.90L355.71 76.38L412.86 108.77L470.00 96.12"/>
 <rect stroke="0" stroke-width="0" fill="#648064"  x="0.00" y="220.00" width="25.00" height="25.00" rx="0.00" ry="0.00"></rect>
 <text x="30.0" y="238.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">heart rate</text>
-<rect stroke="0" stroke-width="0" fill="#326432"  x="235.00" y="220.00" width="25.00" height="25.00" rx="0.00" ry="0.00"></rect>
+<rect stroke="0" stroke-width="0" fill="#646419"  x="235.00" y="220.00" width="25.00" height="25.00" rx="0.00" ry="0.00"></rect>
 <text x="265.0" y="238.0" font-family="sans-serif" font-size="18.0" text-anchor="start" fill="grey">blood pressure</text>
 </svg>
