@@ -1,21 +1,31 @@
 <div class="content">
   <p>Heart Rate:</p>
   <p class="big"><span id="hrOutput">42.5</span> BPM</p>
-  <div class="scaleContainer" id="hrGraph" value="42.5" max="300" scale=1>
+  <div class="scaleContainer" id="hrGraph" value="42.5" max="300" scale="1">
     <img src="hrate.svg"></img>
   </div>
   <p>
-    <input id="hRateCheckbox" type="checkbox"> Show in dashboard
+    <input id="hRateCheckbox" type="checkbox"/> Show in dashboard
+   </p>
+	
+  <p>
+    I want the lower threshold for warnings about my heart rate to be <span id="hrLowerWarning"></span> BPM and upper threshold to be <span id="hrUpperWarning"></span> BPM. <span class="green">You can change this value by adjusting the slider below.</span>
   </p>
+  <div class="slider-cus" id="hrThresholdSlider"></div>
   <div class="vspace"/>
 
   <p>Blood pressure:</p>
   <p class="big"><span id="bpOutput">102</span> <span id="bpUnit">mmHg</span></p>
-  <div class="scaleContainer" id="bpGraph" value="102" max="300" scale=1>
+  <div class="scaleContainer" id="bpGraph" value="102" max="300" scale="1">
     <img src="bpres.svg"></img>
   </div>
+  <br />
   <p>
-    <input id="bPressureCheckbox" type="checkbox"> Show in dashboard
+    I want the lower threshold for warnings about my blood pressure to be <span id="bpLowerWarning"></span> <span class="bpThresholdUnit"></span> and upper threshold to be <span id="bpUpperWarning"></span> <span class="bpThresholdUnit"></span>. <span class="green">You can change this value by adjusting the slider below.</span>
+  </p>
+  <div class="slider-cus" id="bpThresholdSlider"></div>
+  <p>
+    <input id="bPressureCheckbox" type="checkbox"/> Show in dashboard
   </p>
   <div class="vspace"/>
   <p>

@@ -6,19 +6,32 @@
   </p>
   
   <div class="vspace"/>
+  <p>
+    I want the lower threshold for warnings about ambient temperature to be <span id="aTempLowerWarning"></span> <span class="tempThresholdUnit"></span> and upper threshold to be <span id="aTempUpperWarning"></span> <span class="tempThresholdUnit"></span>. <span class="green">You can change this value by adjusting the slider below.</span>
+  </p>
+  <div class="slider-cus" id="aTempThresholdSlider"></div>
+
+  <br />
 
   <p>Body temperature:</p>
   <p class="big"><span id="bodyTempValue">36.4</span> <span id="bodyTempUnit">&#8451;</span></p>
   <div class="scaleContainer" id="bodyTempGraph" value="36.4" max="60" scale="2">
-	<img src="temp.svg"></img>
+	   <img src="temp.svg"></img>
   </div>
+  
   <p>
     <input id="bTempCheckbox" type="checkbox"></input>Show in dashboard
   </p>
+  
+  <p>
+    I want the lower threshold for warnings about my body temperature to be <span id="bTempLowerWarning"></span> <span class="tempThresholdUnit"></span> and upper threshold to be <span id="bTempUpperWarning"></span> <span class="tempThresholdUnit"></span>. <span class="green">You can change this value by adjusting the slider below.</span>
+  </p>
+  <div class="slider-cus" id="bTempThresholdSlider"></div>
+
+  <br />
 
   <p class="">
     I want my heart rate and blood pressure to be meassured every: <span id="tempIntervalOutput"></span> minutes. <span class="green">You can change this value by dragging the slider below.</span>
   </p>
   <div class="slider-cus" id="tempSlider"></div>
-
 </div>
