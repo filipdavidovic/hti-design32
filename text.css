@@ -8,7 +8,13 @@ p.alert-text {
   color: red;
 }
 
+small-title {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+}
+
 p {
+  /*font-family: 'opendyslexic';*/
 	margin: 0px;
 }
 

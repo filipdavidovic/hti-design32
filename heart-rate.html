@@ -2,14 +2,18 @@
   <p>Heart Rate:</p>
   <p class="big"><span class="value" key="hr">42.5</span> BPM</p>
   <div class="scaleContainer" value="hr" max="300" scale="1">
-  <img src="hrate.svg"></img>
+    <img src="hrate.svg"></img>
   </div>
+
   <p>Blood pressure:</p>
   <p class="big"><span class="value" key="bp">102</span> <span class="unit" key="bpUnit">mmHg</span></p>
   <div class="scaleContainer" value="bp" max="300" scale="1">
-  <img src="bpres.svg"></img>
+    <img src="bpres.svg"></img>
   </div>
+  <p>
+    I want my heart rate and blood pressure to be meassured every: <span id="hrBpIntervalOutput"></span> minutes. <span class="green">You can change this value by dragging the slider below.</span>
+  </p>
+  <div class="slider-cus" id="hrBpSlider"></div>
   <p>History: </p>
   <img src="graphs/heart.svg" width="100%"></img>
 </div>
-

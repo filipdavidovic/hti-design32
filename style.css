@@ -8,8 +8,6 @@ body {
 	padding: 0px 50px 50px 50px;
 }
 
-
-
 .ulist {
 	text-align: left;
 }
@@ -61,7 +59,7 @@ body {
 
 .leftbar a, .rightbar a, .tiles a {
 	transition: all 0.5s ease;
-	
+
 }
 
 .leftbar a:hover, .rightbar a:hover, .tiles a:hover {
