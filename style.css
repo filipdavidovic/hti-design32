@@ -8,8 +8,6 @@ body {
 	padding: 0px 50px 50px 50px;
 }
 
-
-
 .ulist {
 	text-align: left;
 }
@@ -21,6 +19,7 @@ body {
 	width: 200px;
 	display: flex;
 	flex-direction: column;
+	background-color: #EBF2ED;
 }
 
 .leftbar img, .rightbar img {
@@ -44,10 +43,14 @@ body {
 
 .leftbar {
 	left: 0px;
+	border-right-style: solid;
+		border-right-color: #558855;
 }
 
 .rightbar {
 	right: 0px;
+	border-left-style: solid;
+		border-left-color: #558855;
 }
 
 .leftbar a, .rightbar a {
@@ -61,7 +64,7 @@ body {
 
 .leftbar a, .rightbar a, .tiles a {
 	transition: all 0.5s ease;
-	
+
 }
 
 .leftbar a:hover, .rightbar a:hover, .tiles a:hover {
