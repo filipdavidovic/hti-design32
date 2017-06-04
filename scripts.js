@@ -27,6 +27,7 @@ function round(value, precision) {
 $(document).ready(function() {
   document.getElementById("dyslexicSheet").disabled=true;
   document.getElementById("highContrastSheet").disabled=true;
+  document.getElementById("greenSheet").disabled=true;
   $("#homebutton").on("click", function () {callPage("landing.html")});
   buildLinks();
   setCookieDefaults();
@@ -92,6 +93,9 @@ function setCookieDefaults() {
 	if (Cookies.get('dyslexic')===undefined){
 		Cookies.set('dyslexic', 'no');
 	}
+	if (Cookies.get('green')===undefined){
+		Cookies.set("green", getRandom(0,100)>50?"yes":"no");
+	}
 	if (Cookies.get("contrast")===undefined){
 		Cookies.set("contrast", 'no');
 	}
@@ -99,7 +103,7 @@ function setCookieDefaults() {
 		Cookies.set("tempUnit", "°c");
 	}
 	if (Cookies.get("bpUnit")===undefined){
-		Cookies.set("mmHg");
+		Cookies.set('bpUnit', "mmHg");
 	}
 	if (Cookies.get("wtemp")===undefined){
 		Cookies.set("wtemp", "on");
@@ -237,8 +241,9 @@ function cookieFunction (name, value) {
 }
 
 function updateSettingLinks() {
-	document.getElementById("dyslexicSheet").disabled=Cookies.get("dyslexic")==="no"
-	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")=="no"
+	document.getElementById("dyslexicSheet").disabled=Cookies.get("dyslexic")==="no";
+	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")=="no";
+	document.getElementById("greenSheet").disabled=Cookies.get("green")=="no";
 
 	var settings=$('ul.setting');
 	for (var i=0; i<settings.length; i++) {
