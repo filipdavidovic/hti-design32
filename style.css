@@ -1,4 +1,12 @@
 @import url("text.css");
+#homebutton{
+	margin-top: 10px;
+}
+
+.bottomline{
+	
+	border-color: #558855;
+}
 
 body {
 	color: grey;
@@ -10,29 +18,6 @@ body {
 
 .ulist {
 	text-align: left;
-}
-
-.leftbar, .rightbar {
-	position: fixed;
-	height: calc(100vh - 20px);
-	top: 20px;
-	width: 250px;
-	display: flex;
-	flex-direction: column;
-	background-color: #EBF2ED;
-
-}
-
-.bottomline{
-	
-	border-color: #558855;
-}
-
-.leftbar img, .rightbar img {
-	height: calc(100% - 30px);
-	max-height: 200px;
-	max-width: 200px;
-	flex-shrink: 1
 }
 
 .topbar {
@@ -47,19 +32,35 @@ body {
 	z-index: 1;
 }
 
+.bottomline{
+	
+	border-color: #558855;
+}
+
+.leftbar, .rightbar {
+	position: fixed;
+	height: calc(100vh - 20px);
+	top: 20px;
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+}
+
+.leftbar img, .rightbar img {
+	height: calc(100% - 30px);
+	max-height: 200px;
+	max-width: 200px;
+	flex-shrink: 1
+}
+
 .leftbar {
 	left: 0px;
-		border-right-style: solid;
-		border-right-color: #558855;
-}
-#homebutton{
-	margin-top: 10px;
+	/*border-right: 2px solid #558855;*/
 }
 
 .rightbar {
 	right: 0px;
-		border-left-style: solid;
-		border-left-color: #558855;
+	/*border-left: 2px solid #558855;*/
 }
 
 .leftbar a, .rightbar a {
@@ -73,7 +74,7 @@ body {
 
 .leftbar a, .rightbar a, .tiles a {
 	transition: all 0.5s ease;
-
+	
 }
 
 .leftbar a:hover, .rightbar a:hover, .tiles a:hover {
