@@ -94,7 +94,7 @@ function setCookieDefaults() {
 		Cookies.set('dyslexic', 'no');
 	}
 	if (Cookies.get('green')===undefined){
-		Cookies.set("green", getRandom(0,100)>50?"yes":"no");
+		Cookies.set("green", (getRandom(0,100)>50)?"yes":"no");
 	}
 	if (Cookies.get("contrast")===undefined){
 		Cookies.set("contrast", 'no');
@@ -242,8 +242,8 @@ function cookieFunction (name, value) {
 
 function updateSettingLinks() {
 	document.getElementById("dyslexicSheet").disabled=Cookies.get("dyslexic")==="no";
-	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")=="no";
-	document.getElementById("greenSheet").disabled=Cookies.get("green")=="no";
+	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")==="no";
+	document.getElementById("greenSheet").disabled=Cookies.get("green")==="no";
 
 	var settings=$('ul.setting');
 	for (var i=0; i<settings.length; i++) {
