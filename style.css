@@ -19,12 +19,12 @@ body {
 	width: 250px;
 	display: flex;
 	flex-direction: column;
-	background-color: #CDE0D2;
+	background-color: #EBF2ED;
+
 }
 
 .bottomline{
-	border-style: solid;
-	border-bottom: 2px;
+	
 	border-color: #558855;
 }
 
@@ -49,6 +49,8 @@ body {
 
 .leftbar {
 	left: 0px;
+		border-right-style: solid;
+		border-right-color: #558855;
 }
 #homebutton{
 	margin-top: 10px;
@@ -56,6 +58,8 @@ body {
 
 .rightbar {
 	right: 0px;
+		border-left-style: solid;
+		border-left-color: #558855;
 }
 
 .leftbar a, .rightbar a {
