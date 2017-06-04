@@ -3,11 +3,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="75" id="svg2" version="1.1">
 <line stroke="grey" stroke-width="3" fill="None"  x1="0" x2="1200" y1="37.5" y2="37.5" />
 <line stroke="grey" stroke-width="2" fill="None"  x1="865.2923076923076" x2="865.2923076923076" y1="37.5" y2="50.0" />
-<text x="865.2923076923076" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">hypothermia</text>
+<text x="865.2923076923076" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">Hypothermia</text>
 <line stroke="grey" stroke-width="2" fill="None"  x1="893.5384615384615" x2="893.5384615384615" y1="37.5" y2="50.0" />
-<text x="893.5384615384615" y="69.5" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">average</text>
+<text x="893.5384615384615" y="69.5" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">Average</text>
 <line stroke="grey" stroke-width="2" fill="None"  x1="927.6923076923077" x2="927.6923076923077" y1="37.5" y2="50.0" />
-<text x="927.6923076923077" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">fever</text>
+<text x="927.6923076923077" y="57.0" font-family="sans-serif" font-size="7" text-anchor="middle" fill="grey">Fever</text>
 <text x="0.0" y="22.0" font-family="sans-serif" font-size="7" text-anchor="start" fill="grey">0°F</text>
 <line stroke="grey" stroke-width="2" fill="None"  x1="0.0" x2="0.0" y1="37.5" y2="25.0" />
 <line stroke="grey" stroke-width="0.5" fill="None"  x1="9.23076923076923" x2="9.23076923076923" y1="37.5" y2="25.0" />

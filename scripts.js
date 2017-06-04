@@ -27,7 +27,7 @@ function round(value, precision) {
 $(document).ready(function() {
   document.getElementById("dyslexicSheet").disabled=true;
   document.getElementById("highContrastSheet").disabled=true;
-  $(".topbar").on("click", function () {callPage("landing.html")});
+  $("#homebutton").on("click", function () {callPage("landing.html")});
   buildLinks();
   setCookieDefaults();
   randomizeImportantValues();
@@ -397,7 +397,7 @@ function buildWarnings() {
 		}
 		else if (Cookies.get(arr[i].strict)==="on") {
 			if (arr[i].value>arr[i].max){
-				$(".notifications").append("<a href=\"t"+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].max+arr[i].unit+"</a>");
+				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is above "+arr[i].max+arr[i].unit+"</a>");
 			}
 			else if (arr[i].value<arr[i].min){
 				$(".notifications").append("<a href=\""+arr[i].link+"\">Your "+arr[i].name+" is below "+arr[i].min+arr[i].unit+"</a>");
