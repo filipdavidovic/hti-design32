@@ -16,10 +16,16 @@ body {
 	position: fixed;
 	height: calc(100vh - 20px);
 	top: 20px;
-	width: 230px;
+	width: 250px;
 	display: flex;
 	flex-direction: column;
 	background-color: #EBF2ED;
+
+}
+
+.bottomline{
+	
+	border-color: #558855;
 }
 
 .leftbar img, .rightbar img {
@@ -43,13 +49,16 @@ body {
 
 .leftbar {
 	left: 0px;
-	border-right-style: solid;
+		border-right-style: solid;
 		border-right-color: #558855;
+}
+#homebutton{
+	margin-top: 10px;
 }
 
 .rightbar {
 	right: 0px;
-	border-left-style: solid;
+		border-left-style: solid;
 		border-left-color: #558855;
 }
 

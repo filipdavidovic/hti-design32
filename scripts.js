@@ -1,5 +1,3 @@
-
-
 var Conversion = {
 	FtoC: function (degrees) {
 		return ((degrees - 32) * (5/9));
@@ -7,11 +5,11 @@ var Conversion = {
 	CtoF: function (degrees){
 		return (degrees * (9/5) + 32);
 	},
-	
+
 	PtoH: function (kpa) {
 		return (kpa / 0.133322387415);
 	},
-	
+
 	HtoP: function (mmhg) {
 		return (mmhg * 0.133322387415);
 	}
@@ -34,7 +32,7 @@ $(document).ready(function() {
   setCookieDefaults();
   randomizeImportantValues();
   setInterval(randomizeImportantValues, 30000);
-	
+
  $(document).keypress(function(e) {
     if(e.which == 49) {
           callPage("heart-rate.html");
@@ -52,12 +50,118 @@ $(document).ready(function() {
         callPage("landing.html");
     }
 });
-	
+
   callPage('landing.html');
+
+  if(Cookies.get("visited") === undefined) {
+    Cookies.set("visited", true, { expires: 7 });
+    Cookies.set("units", {
+      "temperatureUnit": "c", // Celsius
+      "bloodPressureUnit": "us" // kPa
+    }, { expires: 7 });
+    Cookies.set("dyslexic", false);
+    Cookies.set("highContrast", false);
+    Cookies.set("shortcuts", false);
+
+    Cookies.set("landingTiles", {
+      "hRate": true,
+      "bPressure": true,
+      "aTemp": true,
+      "bTemp": true,
+      "stress": true,
+      "sleep": true
+    }, { expires: 7 });
+
+    localStorage.setItem("thresholds", JSON.stringify({
+      "hr": [40, 150],
+      "bp": [70, 140],
+      "aTemp": [0, 28],
+      "bTemp": [35, 38]
+    }));
+
+    localStorage.setItem("hr", getRandom(50, 190));
+    localStorage.setItem("bp", getRandom(120, 180));
+    localStorage.setItem("hrBpInterval", 30);
+
+    localStorage.setItem("lastInterval", setInterval(function() {
+      localStorage.setItem("hr", getRandom(50, 190));
+      localStorage.setItem("bp", getRandom(120, 180));
+    }, localStorage.getItem("hrBpInterval") * 60 * 1000));
+
+
+    localStorage.setItem("aTemp", getRandom(-10, 40));
+    localStorage.setItem("bTemp", getRandom(32, 40));
+    localStorage.setItem("tempInterval", 30);
+
+    localStorage.setItem("lastTempInterval", setInterval(function() {
+      localStorage.setItem("aTemp", getRandom(-10, 40));
+      localStorage.setItem("bTemp", getRandom(32, 40));
+    }, localStorage.getItem("tempInterval") * 60 * 1000));
+  } else {
+    if(localStorage.getItem("hrBpInterval") === null) {
+      localStorage.setItem("hrBpInterval", 30);
+    }
+
+    if(localStorage.getItem("tempInterval") === null) {
+      localStorage.setItem("tempInterval", 30);
+    }
+  }
+
+  $(document).keypress(function(e) {
+    if(e.which == 49) {
+        if(Cookies.get("shortcuts") === "true") {
+          callPage("heart-rate.html");
+        }
+    } else if(e.which == 50) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("temperature.html");
+      }
+    } else if(e.which == 51) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("location.html");
+      }
+    } else if(e.which == 52) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("stress.html");
+      }
+    } else if(e.which == 53) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("sleep.html");
+      }
+    } else if(e.which == 54) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("settings.html");
+      }
+    } else if(e.which == 48) {
+      if(Cookies.get("shortcuts") === "true") {
+        callPage("landing.html");
+      }
+    }
+  });
+
+  if(Cookies.get("highContrast") === "true") {
+    $( "<style id=\"highContrastStyle\">body { background-color: black; } .green { color: #885555; } a { color: #885555; } .topbar { color: black; } .notification { border-left-color: #442a2a; background-color: #885555; color: black; }</style>" ).appendTo( "head" );
+  }
+
+  if(Cookies.get("dyslexic") === "true") {
+    $( "<style id=\"dyslexicStyle\">p, a, h2 { font-family: 'opendyslexic'; }</style>" ).appendTo( "head" );
+  }
+
+  updateHrBp();
+  clearInterval(localStorage.getItem("lastInterval"));
+  localStorage.setItem("lastInterval", setInterval(function() {
+    updateHrBp();
+  }, localStorage.getItem("hrBpInterval") * 60 * 1000));
+
+  updateTemp();
+  clearInterval(localStorage.getItem("lastTempInterval"));
+  localStorage.setItem("lastTempInterval", setInterval(function() {
+    updateTemp();
+  }, localStorage.getItem("tempInterval") * 60 * 1000));
 });
 
 function setCookieDefaults() {
-	
+
 	if (Cookies.get('dyslexic')===undefined){
 		Cookies.set('dyslexic', 'no');
 	}
@@ -82,13 +186,13 @@ function setCookieDefaults() {
 }
 
 function randomizeImportantValues() {
-	
+
 	Cookies.set('hr', getRandom(80, 120));
 	Cookies.set('bp', getRandom(60, 140));
 	Cookies.set('bt', getRandom(35, 39));
 	Cookies.set('at', getRandom(-10, 40));
 	Cookies.set('s', getRandom(0,100));
-	
+
 	updateUnits();
 	updateGraphs();
 	buildWarnings();
@@ -114,12 +218,12 @@ function callPage(pageRefInput) {
 		buildWarnings();
 		buildLinks();
 		window.scrollTo(0, 0);
-	  
+
     },
     error: function( error ) {
 		$(".innerContent").html("<p class=\"big\">Load failed</p>Check your internet connection<br><a href=\""
 			+pageRefInput+"\">retry</a>");
-		
+
       console.log("the page was NOT loaded: ", error);
     },
     complete: function(xhr, status) {
@@ -142,7 +246,6 @@ function callPage(pageRefInput) {
 
 }());
 
-
 function updateGraphs() {
 	var containers=$('.scaleContainer');
 	  for (var i=0; i<containers.length; i++) {
@@ -157,7 +260,7 @@ function updateGraphs() {
 		  if (scale <= 0 || scale==NaN){
 			  scale=1;
 		  }
-		  
+
 		  var toDelete=[];
 		  for (var j=0; j<containers[i].childNodes.length; j++){
 			  if (containers[i].childNodes[j].nodeType==1) {
@@ -166,7 +269,7 @@ function updateGraphs() {
 				  }
 				  else {
 					if (isNaN(unit)) {
-					  
+
 					  //special cases: replacing scales when units are switched
 					    if ((containers[i].childNodes[j].getAttribute("src")=="temp.svg" ||
    						     containers[i].childNodes[j].getAttribute("src")=="temp_f.svg")&&
@@ -183,7 +286,7 @@ function updateGraphs() {
 							  value=Conversion.HtoP(value);
 						 }
 					}
-					
+
 					containers[i].childNodes[j].style.left="calc(50% - "+(value * scale * 150 * 600) / (75 * max) +"px)";
 				  }
 			  }
@@ -209,7 +312,7 @@ function cookieFunction (name, value) {
 function updateSettingLinks() {
 	document.getElementById("dyslexicSheet").disabled=Cookies.get("dyslexic")==="no"
 	document.getElementById("highContrastSheet").disabled=Cookies.get("contrast")=="no"
-	
+
 	var settings=$('ul.setting');
 	for (var i=0; i<settings.length; i++) {
 		var cookie=Cookies.get(settings[i].getAttribute("name"));
@@ -227,7 +330,7 @@ function updateSettingLinks() {
 					$(settings[i].childNodes[j]).off("click");
 					$(settings[i].childNodes[j]).on("click", func);
 				}
-			
+
 			}
 		}
 	}
@@ -238,7 +341,7 @@ function updateUnits() {
 	for (var i=0; i<values.length; i++){
 		var name=values[i].getAttribute("key");
 		var item=Cookies.get(name);
-		
+
 		//special case for unit conversions
 		if (name=="bp" && Cookies.get("bpUnit")==="kPa"){
 			item=Conversion.HtoP(item);
@@ -246,11 +349,11 @@ function updateUnits() {
 		if ((name==="bt" || name==="at") && Cookies.get("tempUnit")=="°f"){
 			item=Conversion.CtoF(item);
 		}
-		
+
 		$(values[i]).text(round(item,1));
 	}
-	
-	var units=$('span.unit'); 
+
+	var units=$('span.unit');
 	for (var i=0; i<units.length; i++){
 		var name=units[i].getAttribute("key");
 		var item=Cookies.get(name);
