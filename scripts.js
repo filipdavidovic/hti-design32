@@ -53,60 +53,6 @@ $(document).ready(function() {
 
   callPage('landing.html');
 
-  if(Cookies.get("visited") === undefined) {
-    Cookies.set("visited", true, { expires: 7 });
-    Cookies.set("units", {
-      "temperatureUnit": "c", // Celsius
-      "bloodPressureUnit": "us" // kPa
-    }, { expires: 7 });
-    Cookies.set("dyslexic", false);
-    Cookies.set("highContrast", false);
-    Cookies.set("shortcuts", false);
-
-    Cookies.set("landingTiles", {
-      "hRate": true,
-      "bPressure": true,
-      "aTemp": true,
-      "bTemp": true,
-      "stress": true,
-      "sleep": true
-    }, { expires: 7 });
-
-    localStorage.setItem("thresholds", JSON.stringify({
-      "hr": [40, 150],
-      "bp": [70, 140],
-      "aTemp": [0, 28],
-      "bTemp": [35, 38]
-    }));
-
-    localStorage.setItem("hr", getRandom(50, 190));
-    localStorage.setItem("bp", getRandom(120, 180));
-    localStorage.setItem("hrBpInterval", 30);
-
-    localStorage.setItem("lastInterval", setInterval(function() {
-      localStorage.setItem("hr", getRandom(50, 190));
-      localStorage.setItem("bp", getRandom(120, 180));
-    }, localStorage.getItem("hrBpInterval") * 60 * 1000));
-
-
-    localStorage.setItem("aTemp", getRandom(-10, 40));
-    localStorage.setItem("bTemp", getRandom(32, 40));
-    localStorage.setItem("tempInterval", 30);
-
-    localStorage.setItem("lastTempInterval", setInterval(function() {
-      localStorage.setItem("aTemp", getRandom(-10, 40));
-      localStorage.setItem("bTemp", getRandom(32, 40));
-    }, localStorage.getItem("tempInterval") * 60 * 1000));
-  } else {
-    if(localStorage.getItem("hrBpInterval") === null) {
-      localStorage.setItem("hrBpInterval", 30);
-    }
-
-    if(localStorage.getItem("tempInterval") === null) {
-      localStorage.setItem("tempInterval", 30);
-    }
-  }
-
   $(document).keypress(function(e) {
     if(e.which == 49) {
         if(Cookies.get("shortcuts") === "true") {
@@ -139,25 +85,6 @@ $(document).ready(function() {
     }
   });
 
-  if(Cookies.get("highContrast") === "true") {
-    $( "<style id=\"highContrastStyle\">body { background-color: black; } .green { color: #885555; } a { color: #885555; } .topbar { color: black; } .notification { border-left-color: #442a2a; background-color: #885555; color: black; }</style>" ).appendTo( "head" );
-  }
-
-  if(Cookies.get("dyslexic") === "true") {
-    $( "<style id=\"dyslexicStyle\">p, a, h2 { font-family: 'opendyslexic'; }</style>" ).appendTo( "head" );
-  }
-
-  updateHrBp();
-  clearInterval(localStorage.getItem("lastInterval"));
-  localStorage.setItem("lastInterval", setInterval(function() {
-    updateHrBp();
-  }, localStorage.getItem("hrBpInterval") * 60 * 1000));
-
-  updateTemp();
-  clearInterval(localStorage.getItem("lastTempInterval"));
-  localStorage.setItem("lastTempInterval", setInterval(function() {
-    updateTemp();
-  }, localStorage.getItem("tempInterval") * 60 * 1000));
 });
 
 function setCookieDefaults() {
